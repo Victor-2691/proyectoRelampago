@@ -4,25 +4,504 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="tiusr7pl_proyecto_relampagoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'tiusr7pl_proyecto_relampago.tiusr7pl_relampago.Prueba' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="Prueba">
-          <Property Name="prueba" Type="varchar" MaxLength="50" />
-        </EntityType>-->
-        <EntityContainer Name="tiusr7pl_proyecto_relampagoModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="tiusr7pl_proyecto_relampagoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Caracteristicas">
+          <Key>
+            <PropertyRef Name="Id_caracteristica" />
+          </Key>
+          <Property Name="Id_caracteristica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="caracteristica" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Factores">
+          <Key>
+            <PropertyRef Name="Id_factor" />
+          </Key>
+          <Property Name="Id_factor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_idea" Type="int" Nullable="false" />
+          <Property Name="factor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_tipo_factor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hoja_Resultados">
+          <Key>
+            <PropertyRef Name="Id_hoja_resultados" />
+          </Key>
+          <Property Name="Id_hoja_resultados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Fecha_registro" Type="date" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ideas">
+          <Key>
+            <PropertyRef Name="Id_idea" />
+          </Key>
+          <Property Name="Id_idea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_caracteristica" Type="int" Nullable="false" />
+          <Property Name="idea" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pestel">
+          <Key>
+            <PropertyRef Name="Id_pestel" />
+          </Key>
+          <Property Name="Id_factor" Type="int" Nullable="false" />
+          <Property Name="Id_pestel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clasificacion_factor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Economico" Type="bit" />
+          <Property Name="Social" Type="bit" />
+          <Property Name="Tecnologico" Type="bit" />
+          <Property Name="Ecologico" Type="bit" />
+          <Property Name="Legal" Type="bit" />
+          <Property Name="Comentario" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tipo_Factor">
+          <Key>
+            <PropertyRef Name="id_tipo_factor" />
+          </Key>
+          <Property Name="id_tipo_factor" Type="bit" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="usuario" />
+          </Key>
+          <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="contra" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Caracteristicas_Hoja_Resultados">
+          <End Role="Hoja_Resultados" Type="Self.Hoja_Resultados" Multiplicity="1" />
+          <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hoja_Resultados">
+              <PropertyRef Name="Id_hoja_resultados" />
+            </Principal>
+            <Dependent Role="Caracteristicas">
+              <PropertyRef Name="Id_hoja_resultados" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caracteristicas_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Caracteristicas">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factores_Ideas">
+          <End Role="Ideas" Type="Self.Ideas" Multiplicity="1" />
+          <End Role="Factores" Type="Self.Factores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ideas">
+              <PropertyRef Name="Id_idea" />
+            </Principal>
+            <Dependent Role="Factores">
+              <PropertyRef Name="Id_idea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factores_Tipo_Factor">
+          <End Role="Tipo_Factor" Type="Self.Tipo_Factor" Multiplicity="1" />
+          <End Role="Factores" Type="Self.Factores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Factor">
+              <PropertyRef Name="id_tipo_factor" />
+            </Principal>
+            <Dependent Role="Factores">
+              <PropertyRef Name="id_tipo_factor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hoja_Resultados_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Hoja_Resultados" Type="Self.Hoja_Resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Hoja_Resultados">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ideas_Caracteristicas">
+          <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="1" />
+          <End Role="Ideas" Type="Self.Ideas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caracteristicas">
+              <PropertyRef Name="Id_caracteristica" />
+            </Principal>
+            <Dependent Role="Ideas">
+              <PropertyRef Name="Id_caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Factores">
+          <End Role="Factores" Type="Self.Factores" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factores">
+              <PropertyRef Name="Id_factor" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Id_factor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tiusr7pl_proyecto_relampagoModelStoreContainer">
+          <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Factores" EntityType="Self.Factores" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Ideas" EntityType="Self.Ideas" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Pestel" EntityType="Self.Pestel" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Tipo_Factor" EntityType="Self.Tipo_Factor" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <AssociationSet Name="FK_Caracteristicas_Hoja_Resultados" Association="Self.FK_Caracteristicas_Hoja_Resultados">
+            <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
+            <End Role="Caracteristicas" EntitySet="Caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caracteristicas_Usuario" Association="Self.FK_Caracteristicas_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Caracteristicas" EntitySet="Caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factores_Ideas" Association="Self.FK_Factores_Ideas">
+            <End Role="Ideas" EntitySet="Ideas" />
+            <End Role="Factores" EntitySet="Factores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factores_Tipo_Factor" Association="Self.FK_Factores_Tipo_Factor">
+            <End Role="Tipo_Factor" EntitySet="Tipo_Factor" />
+            <End Role="Factores" EntitySet="Factores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hoja_Resultados_Usuario" Association="Self.FK_Hoja_Resultados_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ideas_Caracteristicas" Association="Self.FK_Ideas_Caracteristicas">
+            <End Role="Caracteristicas" EntitySet="Caracteristicas" />
+            <End Role="Ideas" EntitySet="Ideas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Factores" Association="Self.FK_Pestel_Factores">
+            <End Role="Factores" EntitySet="Factores" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="Self.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tiusr7pl_proyecto_relampagoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Caracteristicas" EntityType="tiusr7pl_proyecto_relampagoModel.Caracteristica" />
+          <EntitySet Name="Factores" EntityType="tiusr7pl_proyecto_relampagoModel.Factore" />
+          <EntitySet Name="Hoja_Resultados" EntityType="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" />
+          <EntitySet Name="Ideas" EntityType="tiusr7pl_proyecto_relampagoModel.Idea" />
+          <EntitySet Name="Pestels" EntityType="tiusr7pl_proyecto_relampagoModel.Pestel" />
+          <EntitySet Name="Tipo_Factor" EntityType="tiusr7pl_proyecto_relampagoModel.Tipo_Factor" />
+          <EntitySet Name="Usuarios" EntityType="tiusr7pl_proyecto_relampagoModel.Usuario" />
+          <AssociationSet Name="FK_Caracteristicas_Hoja_Resultados" Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados">
+            <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
+            <End Role="Caracteristica" EntitySet="Caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caracteristicas_Usuario" Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Caracteristica" EntitySet="Caracteristicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ideas_Caracteristicas" Association="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Caracteristicas">
+            <End Role="Caracteristica" EntitySet="Caracteristicas" />
+            <End Role="Idea" EntitySet="Ideas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factores_Ideas" Association="tiusr7pl_proyecto_relampagoModel.FK_Factores_Ideas">
+            <End Role="Idea" EntitySet="Ideas" />
+            <End Role="Factore" EntitySet="Factores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factores_Tipo_Factor" Association="tiusr7pl_proyecto_relampagoModel.FK_Factores_Tipo_Factor">
+            <End Role="Tipo_Factor" EntitySet="Tipo_Factor" />
+            <End Role="Factore" EntitySet="Factores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Factores" Association="tiusr7pl_proyecto_relampagoModel.FK_Pestel_Factores">
+            <End Role="Factore" EntitySet="Factores" />
+            <End Role="Pestel" EntitySet="Pestels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hoja_Resultados_Usuario" Association="tiusr7pl_proyecto_relampagoModel.FK_Hoja_Resultados_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="tiusr7pl_proyecto_relampagoModel.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Usuario1" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Caracteristica">
+          <Key>
+            <PropertyRef Name="Id_caracteristica" />
+          </Key>
+          <Property Name="Id_caracteristica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="caracteristica1" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hoja_Resultados" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados" FromRole="Caracteristica" ToRole="Hoja_Resultados" />
+          <NavigationProperty Name="Usuario1" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Usuario" FromRole="Caracteristica" ToRole="Usuario" />
+          <NavigationProperty Name="Ideas" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Caracteristicas" FromRole="Caracteristica" ToRole="Idea" />
+        </EntityType>
+        <EntityType Name="Factore">
+          <Key>
+            <PropertyRef Name="Id_factor" />
+          </Key>
+          <Property Name="Id_factor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_idea" Type="Int32" Nullable="false" />
+          <Property Name="factor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_factor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Idea" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Factores_Ideas" FromRole="Factore" ToRole="Idea" />
+          <NavigationProperty Name="Tipo_Factor" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Factores_Tipo_Factor" FromRole="Factore" ToRole="Tipo_Factor" />
+          <NavigationProperty Name="Pestels" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Pestel_Factores" FromRole="Factore" ToRole="Pestel" />
+        </EntityType>
+        <EntityType Name="Hoja_Resultados">
+          <Key>
+            <PropertyRef Name="Id_hoja_resultados" />
+          </Key>
+          <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Caracteristicas" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados" FromRole="Hoja_Resultados" ToRole="Caracteristica" />
+          <NavigationProperty Name="Usuario1" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Hoja_Resultados_Usuario" FromRole="Hoja_Resultados" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Idea">
+          <Key>
+            <PropertyRef Name="Id_idea" />
+          </Key>
+          <Property Name="Id_idea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_caracteristica" Type="Int32" Nullable="false" />
+          <Property Name="idea1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Caracteristica" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Caracteristicas" FromRole="Idea" ToRole="Caracteristica" />
+          <NavigationProperty Name="Factores" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Factores_Ideas" FromRole="Idea" ToRole="Factore" />
+        </EntityType>
+        <EntityType Name="Pestel">
+          <Key>
+            <PropertyRef Name="Id_pestel" />
+          </Key>
+          <Property Name="Id_factor" Type="Int32" Nullable="false" />
+          <Property Name="Id_pestel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clasificacion_factor" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Economico" Type="Boolean" />
+          <Property Name="Social" Type="Boolean" />
+          <Property Name="Tecnologico" Type="Boolean" />
+          <Property Name="Ecologico" Type="Boolean" />
+          <Property Name="Legal" Type="Boolean" />
+          <Property Name="Comentario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Factore" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Pestel_Factores" FromRole="Pestel" ToRole="Factore" />
+        </EntityType>
+        <EntityType Name="Tipo_Factor">
+          <Key>
+            <PropertyRef Name="id_tipo_factor" />
+          </Key>
+          <Property Name="id_tipo_factor" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Factores" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Factores_Tipo_Factor" FromRole="Tipo_Factor" ToRole="Factore" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="usuario1" />
+          </Key>
+          <Property Name="usuario1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="contra" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Caracteristicas" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Usuario" FromRole="Usuario" ToRole="Caracteristica" />
+          <NavigationProperty Name="Hoja_Resultados" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Hoja_Resultados_Usuario" FromRole="Usuario" ToRole="Hoja_Resultados" />
+          <NavigationProperty Name="Usuario11" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Usuario_Usuario" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="Usuario2" Relationship="tiusr7pl_proyecto_relampagoModel.FK_Usuario_Usuario" FromRole="Usuario1" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Caracteristicas_Hoja_Resultados">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Role="Hoja_Resultados" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Caracteristica" Role="Caracteristica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hoja_Resultados">
+              <PropertyRef Name="Id_hoja_resultados" />
+            </Principal>
+            <Dependent Role="Caracteristica">
+              <PropertyRef Name="Id_hoja_resultados" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caracteristicas_Usuario">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Caracteristica" Role="Caracteristica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario1" />
+            </Principal>
+            <Dependent Role="Caracteristica">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ideas_Caracteristicas">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Caracteristica" Role="Caracteristica" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Idea" Role="Idea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caracteristica">
+              <PropertyRef Name="Id_caracteristica" />
+            </Principal>
+            <Dependent Role="Idea">
+              <PropertyRef Name="Id_caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factores_Ideas">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Idea" Role="Idea" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Factore" Role="Factore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idea">
+              <PropertyRef Name="Id_idea" />
+            </Principal>
+            <Dependent Role="Factore">
+              <PropertyRef Name="Id_idea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Factores_Tipo_Factor">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Tipo_Factor" Role="Tipo_Factor" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Factore" Role="Factore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_Factor">
+              <PropertyRef Name="id_tipo_factor" />
+            </Principal>
+            <Dependent Role="Factore">
+              <PropertyRef Name="id_tipo_factor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Factores">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Factore" Role="Factore" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Pestel" Role="Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Factore">
+              <PropertyRef Name="Id_factor" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Id_factor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hoja_Resultados_Usuario">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Role="Hoja_Resultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario1" />
+            </Principal>
+            <Dependent Role="Hoja_Resultados">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Usuario">
+          <End Type="tiusr7pl_proyecto_relampagoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="tiusr7pl_proyecto_relampagoModel.Usuario" Role="Usuario1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="usuario1" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="usuario1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities" />
+        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities" >
+          <EntitySetMapping Name="Caracteristicas">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Caracteristica">
+              <MappingFragment StoreEntitySet="Caracteristicas">
+                <ScalarProperty Name="Id_hoja_resultados" ColumnName="Id_hoja_resultados" />
+                <ScalarProperty Name="caracteristica1" ColumnName="caracteristica" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="Id_caracteristica" ColumnName="Id_caracteristica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Factores">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Factore">
+              <MappingFragment StoreEntitySet="Factores">
+                <ScalarProperty Name="id_tipo_factor" ColumnName="id_tipo_factor" />
+                <ScalarProperty Name="factor" ColumnName="factor" />
+                <ScalarProperty Name="Id_idea" ColumnName="Id_idea" />
+                <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hoja_Resultados">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados">
+              <MappingFragment StoreEntitySet="Hoja_Resultados">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="Fecha_registro" ColumnName="Fecha_registro" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="Id_hoja_resultados" ColumnName="Id_hoja_resultados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ideas">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Idea">
+              <MappingFragment StoreEntitySet="Ideas">
+                <ScalarProperty Name="idea1" ColumnName="idea" />
+                <ScalarProperty Name="Id_caracteristica" ColumnName="Id_caracteristica" />
+                <ScalarProperty Name="Id_idea" ColumnName="Id_idea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pestels">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Pestel">
+              <MappingFragment StoreEntitySet="Pestel">
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Legal" ColumnName="Legal" />
+                <ScalarProperty Name="Ecologico" ColumnName="Ecologico" />
+                <ScalarProperty Name="Tecnologico" ColumnName="Tecnologico" />
+                <ScalarProperty Name="Social" ColumnName="Social" />
+                <ScalarProperty Name="Economico" ColumnName="Economico" />
+                <ScalarProperty Name="clasificacion_factor" ColumnName="clasificacion_factor" />
+                <ScalarProperty Name="Id_pestel" ColumnName="Id_pestel" />
+                <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipo_Factor">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Tipo_Factor">
+              <MappingFragment StoreEntitySet="Tipo_Factor">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="id_tipo_factor" ColumnName="id_tipo_factor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="contra" ColumnName="contra" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
