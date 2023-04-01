@@ -141,7 +141,7 @@
     <Content Include="Paginas\Caracteristicas.aspx" />
     <Content Include="Paginas\Factores.aspx" />
     <Content Include="Paginas\Ideas.aspx" />
-    <Content Include="Paginas\Login.aspx" />
+    <Content Include="Paginas\pagina_login.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
     <Content Include="Recursos\number2_32.png" />
@@ -235,12 +235,12 @@
     <Compile Include="Paginas\Ideas.aspx.designer.cs">
       <DependentUpon>Ideas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Paginas\Login.aspx.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="Paginas\pagina_login.aspx.cs">
+      <DependentUpon>pagina_login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Paginas\Login.aspx.designer.cs">
-      <DependentUpon>Login.aspx</DependentUpon>
+    <Compile Include="Paginas\pagina_login.aspx.designer.cs">
+      <DependentUpon>pagina_login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -280,13 +280,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
-      <Project>{74d2e3c4-8566-41d0-b396-1abf4c1e7a5f}</Project>
-      <Name>CapaDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CapaNegocios\CapaNegocios.csproj">
-      <Project>{e83985b1-387c-4298-8df0-185ec6d89b99}</Project>
-      <Name>CapaNegocios</Name>
+    <ProjectReference Include="..\Capa_Negocios\Capa_Negocios.csproj">
+      <Project>{6398acb5-6b31-4ba6-b8f3-2edbcf250b95}</Project>
+      <Name>Capa_Negocios</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

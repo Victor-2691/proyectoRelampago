@@ -6,13 +6,43 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CapaDatos;
-using Microsoft.Win32;
+using capa_datos;
 
-namespace CapaNegocios
+namespace Capa_Negocios
 {
-    public class Class1
+    public class metodosBD
     {
+
+        public void selectusuarios()
+        {
+            try
+            {
+
+                tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
+                var query = from u in db.Usuarios
+                            select u;
+
+                List<Usuario> usuariosLista = query.ToList();
+
+                foreach (var item in usuariosLista)
+                {
+                    string usuario = item.usuario1;
+                    string contra = item.contra;
+
+                }
+
+
+            }   
+
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+           
+            }
+
+
+        }
 
         #region Iniciar Sesion
 
@@ -20,7 +50,7 @@ namespace CapaNegocios
         {
             try
             {
-                using(tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     Usuario usuario = new Usuario();
                     usuario = db.Usuarios.Find(user);
@@ -66,7 +96,7 @@ namespace CapaNegocios
                 {
 
                     throw;
-                } 
+                }
             }
         }
 
@@ -77,9 +107,9 @@ namespace CapaNegocios
             try
             {
 
-                using(tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
-                    var lista = from d in db.Ideas 
+                    var lista = from d in db.Ideas
                                 select d;
                     dt = ConvertirListaToDataTable(lista.ToList());
                 }
@@ -103,8 +133,8 @@ namespace CapaNegocios
                     Idea new_idea = new Idea();
                     new_idea.Id_idea = idIdea;
                     new_idea.idea1 = idea;
-                    
-                    db.Entry(new_idea).State=System.Data.Entity.EntityState.Modified;
+
+                    db.Entry(new_idea).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
                 }
             }
@@ -163,3 +193,4 @@ namespace CapaNegocios
         #endregion
     }
 }
+

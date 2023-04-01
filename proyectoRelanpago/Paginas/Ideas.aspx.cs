@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Capa_Negocios;
 
 namespace proyectoRelanpago.Paginas
 {
@@ -11,6 +12,8 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            metodosBD login = new metodosBD();
+            login.selectusuarios();
 
         }
     }
