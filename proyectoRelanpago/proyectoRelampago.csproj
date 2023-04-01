@@ -139,6 +139,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Paginas\Caracteristicas.aspx" />
+    <Content Include="Paginas\cerrarsesion.aspx" />
     <Content Include="Paginas\Factores.aspx" />
     <Content Include="Paginas\Ideas.aspx" />
     <Content Include="Paginas\pagina_login.aspx" />
@@ -220,6 +221,13 @@
     </Compile>
     <Compile Include="Paginas\Caracteristicas.aspx.designer.cs">
       <DependentUpon>Caracteristicas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\cerrarsesion.aspx.cs">
+      <DependentUpon>cerrarsesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\cerrarsesion.aspx.designer.cs">
+      <DependentUpon>cerrarsesion.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Factores.aspx.cs">
       <DependentUpon>Factores.aspx</DependentUpon>

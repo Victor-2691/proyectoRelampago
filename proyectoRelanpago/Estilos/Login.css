@@ -28,14 +28,11 @@
     color: #285e55;
     font-weight: 900;
     font-family: Roboto;
-    h1
-
-{
-    margin-top: 5px;
-    margin-bottom: 10px;
 }
 
-}
+
+
+
 
 .centrar_icono {
     display: flex;

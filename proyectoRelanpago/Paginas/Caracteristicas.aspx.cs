@@ -11,6 +11,10 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Usuario"] == null)
+            {
+                Response.Redirect("~/Paginas/pagina_login.aspx");
+            }
 
         }
     }
