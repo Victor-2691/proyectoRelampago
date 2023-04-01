@@ -1,0 +1,66 @@
+﻿body,
+html,
+.cont {
+    height: 100%;
+}
+
+.form {
+    height: 87%;
+}
+
+.divParrafoEx {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parrEx {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Roboto;
+}
+
+.contInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contCaracteristicas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.txt {
+    width: 400px;
+    height: 45px;
+    border-width: 1px;
+    border-color: #22A2CE;
+    max-width: 400px;
+    font-family: Roboto;
+}
+
+.number {
+    margin-right: 12px;
+}
+
+.divBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.botonGuardar {
+    font-family: Roboto;
+    font-size: 16px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #1191DE;
+    border-radius: 50px;
+    width: 600px;
+    height: 40px;
+}

@@ -113,6 +113,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Estilos\Caracteristicas.css" />
+    <Content Include="Estilos\Login.css" />
+    <Content Include="Estilos\Principal.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -125,6 +128,19 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Paginas\Caracteristicas.aspx" />
+    <Content Include="Paginas\Login.aspx" />
+    <Content Include="Recursos\number10_32.png" />
+    <Content Include="Recursos\number1_32.png" />
+    <Content Include="Recursos\number2_32.png" />
+    <Content Include="Recursos\number3_32.png" />
+    <Content Include="Recursos\number4_32.png" />
+    <Content Include="Recursos\number5_32.png" />
+    <Content Include="Recursos\number6_32.png" />
+    <Content Include="Recursos\number7_32.png" />
+    <Content Include="Recursos\number8_32.png" />
+    <Content Include="Recursos\number9_32.png" />
+    <Content Include="Recursos\PESTEL.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -185,6 +201,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Caracteristicas.aspx.cs">
+      <DependentUpon>Caracteristicas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Caracteristicas.aspx.designer.cs">
+      <DependentUpon>Caracteristicas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
