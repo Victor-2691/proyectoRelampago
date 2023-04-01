@@ -3,8 +3,8 @@
     font-size: 100%;
     color: #1b262c;
     margin: 0 auto;
-  
 }
+
 #contenedor {
     display: flex;
     align-items: center;
@@ -28,11 +28,13 @@
     color: #285e55;
     font-weight: 900;
     font-family: Roboto;
+    h1
 
-    h1{
-          margin-top: 5px;
-          margin-bottom: 10px;
-      }
+{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 }
 
 .centrar_icono {
@@ -69,7 +71,6 @@
         #login input::placeholder {
             font-family: 'Overpass', sans-serif;
             color: black;
-           
         }
 
 

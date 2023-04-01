@@ -15,17 +15,45 @@ namespace proyectoRelanpago.Paginas
 
             DataTable dt = new DataTable();
 
-            dt.Columns.Add("Característica", typeof(string));
+            dt.Columns.Add("ID", typeof(string));
+            dt.Columns.Add("Caracteristica", typeof(string));
             dt.Columns.Add("Idea", typeof(string));
-            dt.Columns.Add("Aspecto positivo", typeof(string));
-            dt.Columns.Add("Aspecto negativo", typeof(string));
+            dt.Columns.Add("AspectoPositivo", typeof(string));
+            dt.Columns.Add("AspectoNegativo", typeof(string));
 
             DataRow Row1;
             Row1 = dt.NewRow();
-            Row1["Característica"] = "sdasdaasdsadasdasdsda";
+            Row1["ID"] = "1";
+            Row1["Caracteristica"] = "sdasdaasdsadasdasdsda";
             Row1["Idea"] = "ssdasdsdasdasadasd";  
-            Row1["Aspecto positivo"] = "saasasasdasasds";
-            Row1["Aspecto negativo"] = "sadassdaasdsdaasd";
+            Row1["AspectoPositivo"] = "saasasasdasasds";
+            Row1["AspectoNegativo"] = "sadassdaasdsdaasd";
+
+            dt.Rows.Add(Row1);
+
+            grdFactores.DataSource = dt;
+            grdFactores.DataBind();
+        }
+
+        protected void grdFactores_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+            grdFactores.EditIndex = e.NewEditIndex;
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("ID", typeof(string));
+            dt.Columns.Add("Caracteristica", typeof(string));
+            dt.Columns.Add("Idea", typeof(string));
+            dt.Columns.Add("AspectoPositivo", typeof(string));
+            dt.Columns.Add("AspectoNegativo", typeof(string));
+
+            DataRow Row1;
+            Row1 = dt.NewRow();
+            Row1["ID"] = "1";
+            Row1["Caracteristica"] = "sdasdaasdsadasdasdsda";
+            Row1["Idea"] = "ssdasdsdasdasadasd";
+            Row1["AspectoPositivo"] = "saasasasdasasds";
+            Row1["AspectoNegativo"] = "sadassdaasdsdaasd";
 
             dt.Rows.Add(Row1);
 

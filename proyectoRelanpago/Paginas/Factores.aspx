@@ -14,9 +14,14 @@
         </div>
 
 
-        <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores">
+        <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" OnRowEditing="grdFactores_RowEditing">
             <Columns>
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                <asp:BoundField DataField="Caracteristica" HeaderText="Característica" ReadOnly="True" />
+                <asp:BoundField DataField="Idea" HeaderText="Idea" ReadOnly="True" />
+                <asp:BoundField DataField="AspectoPositivo" HeaderText="Aspecto positivo" />
+                <asp:BoundField DataField="AspectoNegativo" HeaderText="Aspecto negativo" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" CancelText="Cancelar" UpdateText="Guardar" />
             </Columns>
             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
             <HeaderStyle BackColor="#000" Font-Bold="True" ForeColor="White" />
