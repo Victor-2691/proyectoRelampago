@@ -1,0 +1,59 @@
+﻿.divParrafoEx {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.parrEx {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Roboto;
+}
+
+.divTitulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cont {
+    -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+}
+
+th, td {
+    padding: 12px;
+}
+
+table {
+    margin: auto;
+    width: 85%;
+}
+
+.divBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding-bottom: 40px
+}
+
+.botonSiguiente {
+    font-family: Roboto;
+    font-size: 16px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #1191DE;
+    border-radius: 50px;
+    width: 600px;
+    height: 40px;
+}
