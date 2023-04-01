@@ -1,0 +1,135 @@
+﻿.divParrafoEx {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parrEx {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Roboto;
+}
+
+.divBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.botonGuardar {
+    font-family: Roboto;
+    font-size: 16px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #1191DE;
+    border-radius: 50px;
+    width: 600px;
+    height: 40px;
+}
+
+.divTitulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.contInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont {
+    -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+}
+
+.contIdeas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form {
+    height: 100%;
+}
+
+.divBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-bottom: 40px;
+}
+
+.divBotonGuardar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.botonGuardar {
+    background-color: #ffff;
+    font-family: Roboto;
+    border-width: 1px;
+    border-color: #22A2CE;
+    width: 170px;
+    height: 45px;
+    max-width: 400px;
+}
+
+.boton {
+    width: 400px;
+    height: 45px;
+    max-width: 400px;
+    background-color: transparent;
+    font-family: Roboto;
+    border-width: 1px;
+    border-color: #22A2CE;
+}
+
+.divIdeas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    font-family: Roboto;
+}
+
+.number {
+    margin-right: 12px;
+}
+
+.divTituloIdeas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.txt {
+    width: 400px;
+    height: 45px;
+    border-width: 1px;
+    border-color: #22A2CE;
+    max-width: 400px;
+    font-family: Roboto;
+}
