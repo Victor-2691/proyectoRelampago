@@ -68,6 +68,4 @@
         </div>        
     </div>
 
-    <script src="https://kit.fontawesome.com/2bbf87e8aa.js" crossorigin="anonymous"></script>
-
 </asp:Content>

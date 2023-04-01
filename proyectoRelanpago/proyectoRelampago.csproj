@@ -114,6 +114,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Estilos\Caracteristicas.css" />
+    <Content Include="Estilos\Form.css" />
+    <Content Include="Estilos\Ideas.css" />
     <Content Include="Estilos\Login.css" />
     <Content Include="Estilos\Principal.css" />
     <Content Include="favicon.ico" />
@@ -129,6 +131,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Paginas\Caracteristicas.aspx" />
+    <Content Include="Paginas\Ideas.aspx" />
     <Content Include="Paginas\Login.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
@@ -209,6 +212,13 @@
     <Compile Include="Paginas\Caracteristicas.aspx.designer.cs">
       <DependentUpon>Caracteristicas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Paginas\Ideas.aspx.cs">
+      <DependentUpon>Ideas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Ideas.aspx.designer.cs">
+      <DependentUpon>Ideas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Paginas\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -257,6 +267,10 @@
     <ProjectReference Include="..\CapaDatos\CapaDatos.csproj">
       <Project>{74d2e3c4-8566-41d0-b396-1abf4c1e7a5f}</Project>
       <Name>CapaDatos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaNegocios\CapaNegocios.csproj">
+      <Project>{e83985b1-387c-4298-8df0-185ec6d89b99}</Project>
+      <Name>CapaNegocios</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
