@@ -11,6 +11,8 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            txt_usuario.Attributes.Add("placeholder", "Usuario");
+            txt_contra.Attributes.Add("placeholder", "Contraseña");
 
         }
     }
