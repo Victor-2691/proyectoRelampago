@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Capa_Negocios;
 
 namespace proyectoRelanpago.Paginas
 {
@@ -14,101 +16,69 @@ namespace proyectoRelanpago.Paginas
         {
             if (!Page.IsPostBack)
             {
-                DataTable dt = new DataTable();
-
-                dt.Columns.Add("ID", typeof(string));
-                dt.Columns.Add("Caracteristica", typeof(string));
-                dt.Columns.Add("Idea", typeof(string));
-                dt.Columns.Add("AspectoPositivo", typeof(string));
-                dt.Columns.Add("AspectoNegativo", typeof(string));
-
-                DataRow Row1;
-                Row1 = dt.NewRow();
-                Row1["ID"] = "1";
-                Row1["Caracteristica"] = "Estudiante de escasos recursos";
-                Row1["Idea"] = "Programas técnicos o capacitaciones rápidas con mercado laboral";
-                Row1["AspectoPositivo"] = "";
-                Row1["AspectoNegativo"] = "";
-
-                dt.Rows.Add(Row1);
-
-                grdFactores.DataSource = dt;
+                //ingresarFactoresNull();
+                DataTable dtFactores = consultarFactores();
+                grdFactores.DataSource = dtFactores;
                 grdFactores.DataBind();
             }
         }
 
         protected void grdFactores_RowEditing(object sender, GridViewEditEventArgs e)
         {
-
             grdFactores.EditIndex = e.NewEditIndex;
-            DataTable dt = new DataTable();
 
-            dt.Columns.Add("ID", typeof(string));
-            dt.Columns.Add("Caracteristica", typeof(string));
-            dt.Columns.Add("Idea", typeof(string));
-            dt.Columns.Add("AspectoPositivo", typeof(string));
-            dt.Columns.Add("AspectoNegativo", typeof(string));
-
-            DataRow Row1;
-            Row1 = dt.NewRow();
-            Row1["ID"] = "1";
-            Row1["Caracteristica"] = "Estudiante de escasos recursos";
-            Row1["Idea"] = "Programas técnicos o capacitaciones rápidas con mercado laboral";
-            Row1["AspectoPositivo"] = "";
-            Row1["AspectoNegativo"] = "";
-            dt.Rows.Add(Row1);
-
-            grdFactores.DataSource = dt;
+            DataTable dtFactores = consultarFactores();
+            grdFactores.DataSource = dtFactores;
             grdFactores.DataBind();
         }
 
         protected void grdFactores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int id = Convert.ToInt32(grdFactores.DataKeys[e.RowIndex].Value.ToString());
+            int idFactor = Convert.ToInt32(grdFactores.DataKeys[e.RowIndex].Value.ToString());
 
             string aspectoPositivo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
             string aspectoNegativo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
 
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("ID", typeof(string));
-            dt.Columns.Add("Caracteristica", typeof(string));
-            dt.Columns.Add("Idea", typeof(string));
-            dt.Columns.Add("AspectoPositivo", typeof(string));
-            dt.Columns.Add("AspectoNegativo", typeof(string));
-
-            DataRow Row1;
-            Row1 = dt.NewRow();
-            Row1["ID"] = "1";
-            Row1["Caracteristica"] = "Estudiante de escasos recursos";
-            Row1["Idea"] = "Programas técnicos o capacitaciones rápidas con mercado laboral";
-            Row1["AspectoPositivo"] = aspectoPositivo;
-            Row1["AspectoNegativo"] = aspectoNegativo;
-
-            dt.Rows.Add(Row1);
+            Factor iFactor = new Factor();
+            iFactor.modificarFactor(idFactor, aspectoPositivo, aspectoNegativo);
 
             grdFactores.EditIndex = -1;
 
-            grdFactores.DataSource = dt;
+            DataTable dtFactores = consultarFactores();
+            grdFactores.DataSource = dtFactores;
             grdFactores.DataBind();
         }
 
         protected void grdFactores_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             grdFactores.EditIndex = -1;
+
+            DataTable dtFactores = consultarFactores();
+            grdFactores.DataSource = dtFactores;
+            grdFactores.DataBind();
         }
 
-        private void ingresarDatos()
+        private void ingresarFactoresNull()
         {
+            Idea iIdeas = new Idea();
+            //int idHojaResultado = (int)Session["idHojaResultado"];
+            int idHojaResultado = 26;
+            ArrayList ideas = iIdeas.obtenerIdeas(idHojaResultado);
 
+            Factor iFactor = new Factor();
+            foreach(Idea idea in ideas)
+            {
+                iFactor.ingresarFactoresNull(idea.IdIdea, idHojaResultado);
+            }
+        }
 
+        private DataTable consultarFactores()
+        {
+            Factor iFactor = new Factor();
+            int idHojaResultado = 26;
 
-
-
-
-
-
-
+            DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
+            return dtFactores;
         }
     }
 }

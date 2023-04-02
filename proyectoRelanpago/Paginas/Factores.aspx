@@ -14,9 +14,9 @@
         </div>
 
         <div class="table-responsive">
-            <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" OnRowEditing="grdFactores_RowEditing" DataKeyNames="ID" OnRowCancelingEdit="grdFactores_RowCancelingEdit" OnRowUpdating="grdFactores_RowUpdating">
+            <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" OnRowEditing="grdFactores_RowEditing" DataKeyNames="idFactor" OnRowCancelingEdit="grdFactores_RowCancelingEdit" OnRowUpdating="grdFactores_RowUpdating">
                 <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                    <asp:BoundField DataField="idFactor" HeaderText="idFactor" Visible="False" />
                     <asp:BoundField DataField="Caracteristica" HeaderText="Característica" ReadOnly="True" />
                     <asp:BoundField DataField="Idea" HeaderText="Idea" ReadOnly="True" />
                     <asp:BoundField DataField="AspectoPositivo" HeaderText="Aspecto positivo" />
