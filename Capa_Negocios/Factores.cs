@@ -13,7 +13,7 @@ namespace Capa_Negocios
 {
     public class Factores
     {
-        public void agregarFactores(string factor)
+        public void agregarFactores(string factor, int idIdea, bool idTipoFactor)
         {
             try
             {
@@ -21,6 +21,8 @@ namespace Capa_Negocios
                 {
                     Factore new_factor = new Factore();
                     new_factor.factor= factor;
+                    new_factor.Id_idea= idIdea;
+                    new_factor.id_tipo_factor = idTipoFactor; 
 
                     db.Factores.Add(new_factor);
                     db.SaveChanges();
@@ -97,7 +99,17 @@ namespace Capa_Negocios
             }
         }
 
+        public void agregarTipoFactor(string estado)
+        {
+            using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+            {
+                Tipo_Factor new_factor = new Tipo_Factor();
+                new_factor.Estado = estado;
 
+                db.Tipo_Factor.Add(new_factor);
+                db.SaveChanges();
+            }
+        }
 
         #region MetodosInternos
 
