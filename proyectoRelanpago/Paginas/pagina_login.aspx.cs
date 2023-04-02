@@ -27,7 +27,7 @@ namespace proyectoRelanpago.Paginas
                 if (iniciasesion)
                 {
                     Session["Usuario"] = txt_usuario.Text.Trim();
-                    Response.Redirect("~/Default.aspx");
+                    Response.Redirect("~/Default.aspx", false);
                 }
                 else
                 {
@@ -48,9 +48,7 @@ namespace proyectoRelanpago.Paginas
                 ScriptManager.RegisterStartupScript(this, GetType(),
    "alert",
    "alert('" + ex.Message + "')", true);
-            }
-          
-         
+            }                   
         }
     }
 }

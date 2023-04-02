@@ -11,14 +11,14 @@ namespace proyectoRelanpago.Paginas
 {
     public partial class Caracteristicas : System.Web.UI.Page
     {
-        public Capa_Negocios.Características c1 = new Capa_Negocios.Características();
+        public Capa_Negocios.Caracteristicas c1 = new Capa_Negocios.Caracteristicas();
 
         public Capa_Negocios.hojatrabajo hoja = new Capa_Negocios.hojatrabajo();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] == null)
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx");
+                Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }
         }
 
@@ -39,6 +39,7 @@ namespace proyectoRelanpago.Paginas
                     DateTime fecha = DateTime.Today;
                     bool estado = false;
                     int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
+
                     /*Insertamos las caracteristicas en un ciclo*/
                     String[] arraycaracteristicas = new String[10];
                     arraycaracteristicas[0] = txtCarac1.Text.Trim();
@@ -59,11 +60,9 @@ namespace proyectoRelanpago.Paginas
                             c1.agregarCaracteristica(usuario, numerohoja, arraycaracteristicas[i]);
 
                         }
-
                     }
 
-                    Response.Redirect("~/Paginas/Ideas.aspx");
-
+                    Response.Redirect("~/Paginas/Ideas.aspx", false);
                 }
             }
             catch (Exception ex)
@@ -73,15 +72,6 @@ namespace proyectoRelanpago.Paginas
                                         "alert",
                            "alert('" + ex.Message + "')", true);
             }
-
-
-
-
-
-
         }
-
-
-
     }
 }

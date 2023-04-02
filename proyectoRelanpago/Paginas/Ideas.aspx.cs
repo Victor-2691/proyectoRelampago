@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Capa_Negocios;
@@ -17,6 +18,21 @@ namespace proyectoRelanpago.Paginas
                 Response.Redirect("~/Paginas/pagina_login.aspx");
             }
 
+        }
+
+        [WebMethod]
+        public static object guardarIdeas(string ideas, int idCaracteristica)
+        {
+            string[] arrayIdeas = ideas.Split(',');
+
+
+
+
+
+
+
+
+            return new { success = true };           
         }
     }
 }
