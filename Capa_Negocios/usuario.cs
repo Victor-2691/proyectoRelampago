@@ -8,30 +8,25 @@ using capa_datos;
 
 namespace Capa_Negocios
 {
-    public class usuario
+    public class UsuarioMethods
     {
-        private tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
+        private tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1();
         public bool login(string usuario, string contra)
         {
             try
             {
-                if ((db.Usuarios.Count(e => e.usuario1 == usuario) > 0) && ((db.Usuarios.Count(e => e.contra == contra) > 0))  )
+                if ((db.Usuario.Count(e => e.usuario1 == usuario) > 0) && ((db.Usuario.Count(e => e.contra == contra) > 0)))
                 {
                     return true;
                 }
                 return false;
-            }   
-
-            catch (Exception )
+            }
+            catch (Exception)
             {
 
                 throw;
-           
+
             }
-
-
         }
-
-
     }
 }

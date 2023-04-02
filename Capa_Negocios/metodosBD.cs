@@ -17,9 +17,8 @@ namespace Capa_Negocios
         {
             try
             {
-
-                tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
-                var query = from u in db.Usuarios
+                tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1();
+                var query = from u in db.Usuario
                             select u;
 
                 List<Usuario> usuariosLista = query.ToList();
@@ -30,20 +29,14 @@ namespace Capa_Negocios
                     string contra = item.contra;
 
                 }
-
-
-            }   
-
+            }
             catch (Exception ex)
             {
 
                 throw new Exception(ex.Message);
-           
+
             }
-
-
         }
-
     }
 }
 

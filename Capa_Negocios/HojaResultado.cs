@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocios
 {
-  public class hojatrabajo
+  public class HojaResultado
     {
 
-        private tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
+        private tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1();
         public int agregarhojatrabajo(string usuario, DateTime fecha, bool estado)
         {
             try

@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocios
 {
-    public class Ideas
+    public class Idea
     {
         #region Ideas
 
         public void AgregarIdea(string idea)
         {
-            using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+            using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
             {
                 try
                 {
 
-                    Idea new_idea = new Idea();
-                    new_idea.idea1 = idea;
+                    Ideas new_idea = new Ideas();
+                    new_idea.idea = idea;
 
                     db.Ideas.Add(new_idea);
                     db.SaveChanges();
@@ -43,7 +43,7 @@ namespace Capa_Negocios
             try
             {
 
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
                     var lista = from d in db.Ideas
                                 select d;
@@ -64,11 +64,11 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
-                    Idea new_idea = new Idea();
+                    Ideas new_idea = new Ideas();
                     new_idea.Id_idea = idIdea;
-                    new_idea.idea1 = idea;
+                    new_idea.idea = idea;
 
                     db.Entry(new_idea).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
@@ -85,9 +85,9 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
-                    Idea new_idea = new Idea();
+                    Ideas new_idea = new Ideas();
                     new_idea = db.Ideas.Find(idIdea);
 
                     db.Ideas.Remove(new_idea);
@@ -108,7 +108,7 @@ namespace Capa_Negocios
         private DataTable ConvertirListaToDataTable(IList data)
         {
 
-            var properties = TypeDescriptor.GetProperties(typeof(Idea));
+            var properties = TypeDescriptor.GetProperties(typeof(Ideas));
 
             DataTable table = new DataTable();
 

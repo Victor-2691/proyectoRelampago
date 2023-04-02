@@ -11,9 +11,9 @@ namespace proyectoRelanpago.Paginas
 {
     public partial class Caracteristicas : System.Web.UI.Page
     {
-        public Capa_Negocios.Caracteristicas c1 = new Capa_Negocios.Caracteristicas();
+        public Capa_Negocios.Caracteristica c1 = new Capa_Negocios.Caracteristica();
 
-        public Capa_Negocios.hojatrabajo hoja = new Capa_Negocios.hojatrabajo();
+        public Capa_Negocios.HojaResultado hoja = new Capa_Negocios.HojaResultado();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] == null)
@@ -34,33 +34,35 @@ namespace proyectoRelanpago.Paginas
                 }
                 else
                 {
-                    /*Insertamos la Hoja de trabajo*/
-                    string usuario = (string)Session["Usuario"];
-                    DateTime fecha = DateTime.Today;
-                    bool estado = false;
-                    int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
+                    ///*Insertamos la Hoja de trabajo*/
+                    //string usuario = (string)Session["Usuario"];
+                    //DateTime fecha = DateTime.Today;
+                    //bool estado = false;
+                    //int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
 
-                    /*Insertamos las caracteristicas en un ciclo*/
-                    String[] arraycaracteristicas = new String[10];
-                    arraycaracteristicas[0] = txtCarac1.Text.Trim();
-                    arraycaracteristicas[1] = txtCarac2.Text.Trim();
-                    arraycaracteristicas[2] = txtCarac3.Text.Trim();
-                    arraycaracteristicas[3] = txtCarac4.Text.Trim();
-                    arraycaracteristicas[4] = txtCarac5.Text.Trim();
-                    arraycaracteristicas[5] = txtCarac6.Text.Trim();
-                    arraycaracteristicas[6] = txtCarac7.Text.Trim();
-                    arraycaracteristicas[7] = txtCarac8.Text.Trim();
-                    arraycaracteristicas[8] = txtCarac9.Text.Trim();
-                    arraycaracteristicas[9] = txtCarac10.Text.Trim();
+                    Session["idHojaResultado"] = 7;
 
-                    for (int i = 0; i < arraycaracteristicas.Length; i++)
-                    {
-                        if (arraycaracteristicas[i] != "")
-                        {
-                            c1.agregarCaracteristica(usuario, numerohoja, arraycaracteristicas[i]);
+                    ///*Insertamos las caracteristicas en un ciclo*/
+                    //String[] arraycaracteristicas = new String[10];
+                    //arraycaracteristicas[0] = txtCarac1.Text.Trim();
+                    //arraycaracteristicas[1] = txtCarac2.Text.Trim();
+                    //arraycaracteristicas[2] = txtCarac3.Text.Trim();
+                    //arraycaracteristicas[3] = txtCarac4.Text.Trim();
+                    //arraycaracteristicas[4] = txtCarac5.Text.Trim();
+                    //arraycaracteristicas[5] = txtCarac6.Text.Trim();
+                    //arraycaracteristicas[6] = txtCarac7.Text.Trim();
+                    //arraycaracteristicas[7] = txtCarac8.Text.Trim();
+                    //arraycaracteristicas[8] = txtCarac9.Text.Trim();
+                    //arraycaracteristicas[9] = txtCarac10.Text.Trim();
 
-                        }
-                    }
+                    //for (int i = 0; i < arraycaracteristicas.Length; i++)
+                    //{
+                    //    if (arraycaracteristicas[i] != "")
+                    //    {
+                    //        c1.agregarCaracteristica(usuario, numerohoja, arraycaracteristicas[i]);
+
+                    //    }
+                    //}
 
                     Response.Redirect("~/Paginas/Ideas.aspx", false);
                 }

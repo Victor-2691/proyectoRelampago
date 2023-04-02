@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocios
 {
-    public class Factores
+    public class Factor
     {
         public void agregarFactores(string factor, int idIdea, bool idTipoFactor)
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
-                    Factore new_factor = new Factore();
+                    Factores new_factor = new Factores();
                     new_factor.factor= factor;
                     new_factor.Id_idea= idIdea;
                     new_factor.id_tipo_factor = idTipoFactor; 
@@ -43,7 +43,7 @@ namespace Capa_Negocios
 
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
                     var factores = from d in db.Factores
                                           select d;
@@ -63,9 +63,9 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
-                    Factore new_factor = new Factore();
+                    Factores new_factor = new Factores();
                     new_factor.Id_factor= id;
                     new_factor.factor= factor;
 
@@ -83,9 +83,9 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
                 {
-                    Factore new_factor = new Factore();
+                    Factores new_factor = new Factores();
                     new_factor = db.Factores.Find(id);
 
                     db.Factores.Remove(new_factor);
@@ -101,7 +101,7 @@ namespace Capa_Negocios
 
         public void agregarTipoFactor(string estado)
         {
-            using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+            using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
             {
                 Tipo_Factor new_factor = new Tipo_Factor();
                 new_factor.Estado = estado;

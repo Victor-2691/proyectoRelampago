@@ -22,7 +22,7 @@ namespace proyectoRelanpago.Paginas
         {
             try
             {
-                usuario login = new usuario();
+                UsuarioMethods login = new UsuarioMethods();
                 bool iniciasesion = login.login(txt_usuario.Text.Trim(), txt_contra.Text.Trim());
                 if (iniciasesion)
                 {
@@ -35,8 +35,8 @@ namespace proyectoRelanpago.Paginas
                     ScriptManager.RegisterStartupScript(this, GetType(),
                                   "alert", "alert('" + "Usuario o contraseña incorrectos" + "')", true);
 
-          
-                    ScriptManager.RegisterStartupScript(this, GetType(),"alert", 
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert",
                    "Swal.fire('Good job!','You clicked the button!','success')", true);
 
                 }
@@ -48,7 +48,7 @@ namespace proyectoRelanpago.Paginas
                 ScriptManager.RegisterStartupScript(this, GetType(),
    "alert",
    "alert('" + ex.Message + "')", true);
-            }                   
+            }
         }
     }
 }

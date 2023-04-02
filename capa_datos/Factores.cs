@@ -12,20 +12,16 @@ namespace capa_datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Pestel
+    public partial class Factores
     {
         public int Id_factor { get; set; }
-        public int Id_pestel { get; set; }
-        public string clasificacion_factor { get; set; }
-        public Nullable<bool> Politico { get; set; }
-        public Nullable<bool> Economico { get; set; }
-        public Nullable<bool> Social { get; set; }
-        public Nullable<bool> Tecnologico { get; set; }
-        public Nullable<bool> Ecologico { get; set; }
-        public Nullable<bool> Legal { get; set; }
-        public string Comentario { get; set; }
+        public int Id_idea { get; set; }
+        public string factor { get; set; }
+        public bool id_tipo_factor { get; set; }
         public int Id_hoja_resultados { get; set; }
     
         public virtual Hoja_Resultados Hoja_Resultados { get; set; }
+        public virtual Ideas Ideas { get; set; }
+        public virtual Tipo_Factor Tipo_Factor { get; set; }
     }
 }

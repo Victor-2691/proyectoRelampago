@@ -3,8 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="../Estilos/Ideas.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    
     <div class="divParrafoEx">
         <p class="parrEx">Digite 3 requerimientos o ideas (trate de ser breve y claro)</p>
     </div>
@@ -15,9 +14,9 @@
         </div>
 
         <div class="contInfo">
-            <div class="contIdeas">
+            <div class="contIdeas" runat="server" id="divCaracteristicas">
                 <div>
-                    <input class="boton" id="Button1" type="button" value="button" data-toggle="modal" data-target="#exampleModal" />
+                    <input class="boton" type="button" value="button" data-toggle="modal" data-target="#exampleModal" />
                 </div>
 
                 <div>
@@ -63,7 +62,8 @@
         </div>
     </div>
 
-    </form>
+    <div runat="server" id="divModals">
+    </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -74,29 +74,27 @@
                         <p>Ideas</p>
                     </div>
 
-                    <form id="informacion" method="post">
-                        <div class="divIdeas">
-
-                            <div>
-                                <img src="../Recursos/number1_32.png" alt="Alternate Text" class="number" />
-                                <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 1">
-                            </div>
-
-                            <div>
-                                <img src="../Recursos/number2_32.png" alt="Alternate Text" class="number" />
-                                <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 2">
-                            </div>
-
-                            <div>
-                                <img src="../Recursos/number3_32.png" alt="Alternate Text" class="number" />
-                                <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 3">
-                            </div>
+                    <div class="divIdeas">
+                        <div>
+                            <img src="../Recursos/number1_32.png" alt="Alternate Text" class="number" />
+                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 1">
                         </div>
 
-                        <div class="divBotonGuardar">
-                            <input class="botonGuardar" type="button" id="btnGuardar" value="GUARDAR" onclick="guardar('1')">
+                        <div>
+                            <img src="../Recursos/number2_32.png" alt="Alternate Text" class="number" />
+                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 2">
                         </div>
-                    </form>
+
+                        <div>
+                            <img src="../Recursos/number3_32.png" alt="Alternate Text" class="number" />
+                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 3">
+                        </div>
+                    </div>
+
+                    <div class="divBotonGuardar">
+                        <input class="botonGuardar" type="button" id="btnGuardar" value="GUARDAR" onclick="guardar('1')">
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -107,6 +105,7 @@
         function guardar(idCaracteristica) {
             var ideas = document.getElementsByName("IdeaCaracteristica" + idCaracteristica)
             var ideasJSON = "";
+            var modalCerrar = "#Caracteristica" + idCaracteristica
 
             for (var i = 0; i < ideas.length; i++) {
                 if (i != ideas.length - 1) {
@@ -126,6 +125,7 @@
                 dataType: "json",
                 success: function (resultado) {
                     if (resultado.d.success === true) {
+                        $(modalCerrar).modal("hide");
                     }
                     else {
                         console.log("Error al guardar")

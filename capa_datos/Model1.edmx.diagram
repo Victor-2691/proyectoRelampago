@@ -4,21 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="170b8caed5734224965a632fd16613e7" Name="Diagram1" ZoomLevel="90">
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Caracteristica" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Factore" Width="1.5" PointX="9.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Idea" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Pestel" Width="1.5" PointX="12" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Tipo_Factor" Width="1.5" PointX="7.5" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Usuario" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
-        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados" ManuallyRouted="false" />
+      <Diagram DiagramId="73ec4f30eec849d690c69b1ed72c02bc" Name="Diagram1">
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Caracteristicas" Width="1.5" PointX="3.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Factores" Width="1.5" PointX="9.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Width="1.5" PointX="1.125" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Ideas" Width="1.5" PointX="6.125" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Pestel" Width="1.5" PointX="6.875" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Tipo_Factor" Width="1.5" PointX="10.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Usuario" Width="1.5" PointX="0.625" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados" ManuallyRouted="true" >
+          <ConnectorPoint PointX="2.625" PointY="6.1385594348390153" />
+          <ConnectorPoint PointX="3.9820141452676272" PointY="6.1385594348390153" />
+          <ConnectorPoint PointX="3.9820141452676272" PointY="3.3648893229166674" />
+        </AssociationConnector>
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Caracteristicas" ManuallyRouted="false" />
+        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Factores_Hoja_Resultados" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Factores_Ideas" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Factores_Tipo_Factor" ManuallyRouted="false" />
-        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Pestel_Factores" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Hoja_Resultados_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Hoja_Resultados" ManuallyRouted="false" />
+        <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Pestel_Factores" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
