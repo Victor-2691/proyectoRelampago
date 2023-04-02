@@ -64,7 +64,8 @@
         </div>
 
         <div class="divBoton">
-            <asp:Button class="botonGuardar" ID="btnGuardar" runat="server" Text="CONFIRMAR CARACTERÍSTICAS" />
+              <asp:Button OnClick="btnGuardar_Click"
+                class="botonGuardar" ID="btnGuardar" runat="server" Text="CONFIRMAR CARACTERÍSTICAS"   />
         </div>        
     </div>
 
