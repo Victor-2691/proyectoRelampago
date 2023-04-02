@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Caracteristicas.cs" />
     <Compile Include="Factores.cs" />
+    <Compile Include="hojatrabajo.cs" />
     <Compile Include="Ideas.cs" />
     <Compile Include="metodosBD.cs" />
     <Compile Include="Pestel.cs" />

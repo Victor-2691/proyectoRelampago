@@ -14,7 +14,7 @@ namespace Capa_Negocios
     {
         #region Caracteristicas
 
-        public void agregarCaracteristica(string carac)
+        public void agregarCaracteristica(string usuario, int hojaresultados, string carac)
         {
             try
             {
@@ -22,7 +22,8 @@ namespace Capa_Negocios
                 {
                     Caracteristica new_caracteristica = new Caracteristica();
                     new_caracteristica.caracteristica1 = carac;
-
+                    new_caracteristica.usuario = usuario;
+                    new_caracteristica.Id_hoja_resultados = hojaresultados;
                     db.Caracteristicas.Add(new_caracteristica);
                     db.SaveChanges();
                 }
