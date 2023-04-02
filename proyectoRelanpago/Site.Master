@@ -54,8 +54,8 @@
                     <ul class="nav navbar-nav">
                         <li><a style="color: #ffff" runat="server" href="~/Paginas/Caracteristicas.aspx">Características</a></li>
                         <li><a style="color: #ffff" runat="server" href="~/About">Históricos</a></li>
-                        <li><a style="color: #ffff" runat="server" href="~/Contact">Cerrar sesión</a></li>
-                    </ul>
+                        <li> <a style="color: #ffff" runat="server" href="~/Paginas/cerrarsesion"> <img style= "filter: invert(100%)" src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/24/000000/external-online-account-logout-with-arrow-direction-mark-login-regular-tal-revivo.png"/>  </a></li>
+                        </ul>
                 </div>
             </div>
         </div>

@@ -4,18 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Capa_Negocios;
 
 namespace proyectoRelanpago.Paginas
 {
-    public partial class Ideas : System.Web.UI.Page
+    public partial class cerrarsesion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
-            {
+			try
+			{
+                Session["Usuario"] = null;
                 Response.Redirect("~/Paginas/pagina_login.aspx");
+             
+
             }
+			catch (Exception ex)
+			{
+
+
+                ScriptManager.RegisterStartupScript(this, GetType(),
+   "alert",
+   "alert('" + ex.Message + "')", true);
+            }
+
 
         }
     }

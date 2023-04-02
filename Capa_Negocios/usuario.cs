@@ -8,7 +8,7 @@ using capa_datos;
 
 namespace Capa_Negocios
 {
-    internal class usuario
+    public class usuario
     {
         private tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
         public bool login(string usuario, string contra)
@@ -22,10 +22,10 @@ namespace Capa_Negocios
                 return false;
             }   
 
-            catch (Exception ex)
+            catch (Exception )
             {
 
-                throw new Exception(ex.Message);
+                throw;
            
             }
 
