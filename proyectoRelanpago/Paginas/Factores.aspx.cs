@@ -56,7 +56,6 @@ namespace proyectoRelanpago.Paginas
             Row1["Idea"] = "Programas técnicos o capacitaciones rápidas con mercado laboral";
             Row1["AspectoPositivo"] = "";
             Row1["AspectoNegativo"] = "";
-
             dt.Rows.Add(Row1);
 
             grdFactores.DataSource = dt;
@@ -97,6 +96,19 @@ namespace proyectoRelanpago.Paginas
         protected void grdFactores_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             grdFactores.EditIndex = -1;
+        }
+
+        private void ingresarDatos()
+        {
+
+
+
+
+
+
+
+
+
         }
     }
 }

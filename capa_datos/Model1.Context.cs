@@ -13,10 +13,10 @@ namespace capa_datos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class tiusr7pl_proyecto_relampagoEntities1 : DbContext
+    public partial class tiusr7pl_proyecto_relampagoEntities3 : DbContext
     {
-        public tiusr7pl_proyecto_relampagoEntities1()
-            : base("name=tiusr7pl_proyecto_relampagoEntities1")
+        public tiusr7pl_proyecto_relampagoEntities3()
+            : base("name=tiusr7pl_proyecto_relampagoEntities3")
         {
         }
     
@@ -30,7 +30,6 @@ namespace capa_datos
         public virtual DbSet<Hoja_Resultados> Hoja_Resultados { get; set; }
         public virtual DbSet<Ideas> Ideas { get; set; }
         public virtual DbSet<Pestel> Pestel { get; set; }
-        public virtual DbSet<Tipo_Factor> Tipo_Factor { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

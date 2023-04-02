@@ -17,15 +17,15 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
-                    Factores new_factor = new Factores();
-                    new_factor.factor= factor;
-                    new_factor.Id_idea= idIdea;
-                    new_factor.id_tipo_factor = idTipoFactor; 
+                    ////Factores new_factor = new Factores();
+                    ////new_factor.aspectoPositivo = factor;
+                    ////new_factor.Id_idea= idIdea;
+                    ////new_factor.id_tipo_factor = idTipoFactor; 
 
-                    db.Factores.Add(new_factor);
-                    db.SaveChanges();
+                    //db.Factores.Add(new_factor);
+                    //db.SaveChanges();
                 }
 
             }
@@ -43,7 +43,7 @@ namespace Capa_Negocios
 
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     var factores = from d in db.Factores
                                           select d;
@@ -63,14 +63,14 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
-                    Factores new_factor = new Factores();
-                    new_factor.Id_factor= id;
-                    new_factor.factor= factor;
+                    //Factores new_factor = new Factores();
+                    //new_factor.Id_factor= id;
+                    //new_factor.factor= factor;
 
-                    db.Entry(new_factor).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
+                    //db.Entry(new_factor).State = System.Data.Entity.EntityState.Modified;
+                    //db.SaveChanges();
                 }
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     Factores new_factor = new Factores();
                     new_factor = db.Factores.Find(id);
@@ -101,13 +101,13 @@ namespace Capa_Negocios
 
         public void agregarTipoFactor(string estado)
         {
-            using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+            using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
             {
-                Tipo_Factor new_factor = new Tipo_Factor();
-                new_factor.Estado = estado;
+                //Tipo_Factor new_factor = new Tipo_Factor();
+                //new_factor.Estado = estado;
 
-                db.Tipo_Factor.Add(new_factor);
-                db.SaveChanges();
+                //db.Tipo_Factor.Add(new_factor);
+                //db.SaveChanges();
             }
         }
 

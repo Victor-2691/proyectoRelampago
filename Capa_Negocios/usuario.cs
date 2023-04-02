@@ -10,7 +10,7 @@ namespace Capa_Negocios
 {
     public class UsuarioMethods
     {
-        private tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1();
+        private tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3();
         public bool login(string usuario, string contra)
         {
             try

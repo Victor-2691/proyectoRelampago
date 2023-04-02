@@ -17,7 +17,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     Pestel new_pestel = new Pestel();
                     new_pestel.clasificacion_factor = clasificacion;
@@ -49,7 +49,7 @@ namespace Capa_Negocios
 
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     var lista = from d in db.Pestel
                                 select d;
@@ -68,7 +68,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     Pestel new_pestel = new Pestel();
                     new_pestel.Id_pestel = id;
@@ -95,7 +95,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     Pestel new_pestel = new Pestel();
                     new_pestel = db.Pestel.Find(id);

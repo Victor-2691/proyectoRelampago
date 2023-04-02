@@ -20,8 +20,8 @@
           </Key>
           <Property Name="Id_factor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_idea" Type="int" Nullable="false" />
-          <Property Name="factor" Type="varchar" MaxLength="60" Nullable="false" />
-          <Property Name="id_tipo_factor" Type="bit" Nullable="false" />
+          <Property Name="aspectoPositivo" Type="varchar" MaxLength="60" />
+          <Property Name="aspectoNegativo" Type="varchar" MaxLength="60" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Hoja_Resultados">
@@ -57,13 +57,6 @@
           <Property Name="Legal" Type="bit" />
           <Property Name="Comentario" Type="varchar" MaxLength="250" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tipo_Factor">
-          <Key>
-            <PropertyRef Name="id_tipo_factor" />
-          </Key>
-          <Property Name="id_tipo_factor" Type="bit" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -117,18 +110,6 @@
             </Principal>
             <Dependent Role="Factores">
               <PropertyRef Name="Id_idea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Factores_Tipo_Factor">
-          <End Role="Tipo_Factor" Type="Self.Tipo_Factor" Multiplicity="1" />
-          <End Role="Factores" Type="Self.Factores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo_Factor">
-              <PropertyRef Name="id_tipo_factor" />
-            </Principal>
-            <Dependent Role="Factores">
-              <PropertyRef Name="id_tipo_factor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -186,7 +167,6 @@
           <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Ideas" EntityType="Self.Ideas" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Pestel" EntityType="Self.Pestel" Schema="tiusr7pl_relampago" store:Type="Tables" />
-          <EntitySet Name="Tipo_Factor" EntityType="Self.Tipo_Factor" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <AssociationSet Name="FK_Caracteristicas_Hoja_Resultados" Association="Self.FK_Caracteristicas_Hoja_Resultados">
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
@@ -202,10 +182,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Factores_Ideas" Association="Self.FK_Factores_Ideas">
             <End Role="Ideas" EntitySet="Ideas" />
-            <End Role="Factores" EntitySet="Factores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Factores_Tipo_Factor" Association="Self.FK_Factores_Tipo_Factor">
-            <End Role="Tipo_Factor" EntitySet="Tipo_Factor" />
             <End Role="Factores" EntitySet="Factores" />
           </AssociationSet>
           <AssociationSet Name="FK_Hoja_Resultados_Usuario" Association="Self.FK_Hoja_Resultados_Usuario">
@@ -248,12 +224,11 @@
           </Key>
           <Property Name="Id_factor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_idea" Type="Int32" Nullable="false" />
-          <Property Name="factor" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id_tipo_factor" Type="Boolean" Nullable="false" />
+          <Property Name="aspectoPositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="aspectoNegativo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Factores_Hoja_Resultados" FromRole="Factores" ToRole="Hoja_Resultados" />
           <NavigationProperty Name="Ideas" Relationship="Self.FK_Factores_Ideas" FromRole="Factores" ToRole="Ideas" />
-          <NavigationProperty Name="Tipo_Factor" Relationship="Self.FK_Factores_Tipo_Factor" FromRole="Factores" ToRole="Tipo_Factor" />
         </EntityType>
         <EntityType Name="Hoja_Resultados">
           <Key>
@@ -297,14 +272,6 @@
           <Property Name="Comentario" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Pestel_Factores" FromRole="Pestel" ToRole="Hoja_Resultados" />
-        </EntityType>
-        <EntityType Name="Tipo_Factor">
-          <Key>
-            <PropertyRef Name="id_tipo_factor" />
-          </Key>
-          <Property Name="id_tipo_factor" Type="Boolean" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Factores" Relationship="Self.FK_Factores_Tipo_Factor" FromRole="Tipo_Factor" ToRole="Factores" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -375,18 +342,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Factores_Tipo_Factor">
-          <End Role="Tipo_Factor" Type="Self.Tipo_Factor" Multiplicity="1" />
-          <End Role="Factores" Type="Self.Factores" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo_Factor">
-              <PropertyRef Name="id_tipo_factor" />
-            </Principal>
-            <Dependent Role="Factores">
-              <PropertyRef Name="id_tipo_factor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Hoja_Resultados_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Hoja_Resultados" Type="Self.Hoja_Resultados" Multiplicity="*" />
@@ -423,13 +378,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" />
           <EntitySet Name="Factores" EntityType="Self.Factores" />
           <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" />
           <EntitySet Name="Ideas" EntityType="Self.Ideas" />
           <EntitySet Name="Pestel" EntityType="Self.Pestel" />
-          <EntitySet Name="Tipo_Factor" EntityType="Self.Tipo_Factor" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Caracteristicas_Hoja_Resultados" Association="Self.FK_Caracteristicas_Hoja_Resultados">
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
@@ -451,10 +405,6 @@
             <End Role="Ideas" EntitySet="Ideas" />
             <End Role="Factores" EntitySet="Factores" />
           </AssociationSet>
-          <AssociationSet Name="FK_Factores_Tipo_Factor" Association="Self.FK_Factores_Tipo_Factor">
-            <End Role="Tipo_Factor" EntitySet="Tipo_Factor" />
-            <End Role="Factores" EntitySet="Factores" />
-          </AssociationSet>
           <AssociationSet Name="FK_Hoja_Resultados_Usuario" Association="Self.FK_Hoja_Resultados_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
@@ -473,7 +423,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities1">
+        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities3">
           <EntitySetMapping Name="Caracteristicas">
             <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Caracteristicas">
               <MappingFragment StoreEntitySet="Caracteristicas">
@@ -489,8 +439,8 @@
               <MappingFragment StoreEntitySet="Factores">
                 <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
                 <ScalarProperty Name="Id_idea" ColumnName="Id_idea" />
-                <ScalarProperty Name="factor" ColumnName="factor" />
-                <ScalarProperty Name="id_tipo_factor" ColumnName="id_tipo_factor" />
+                <ScalarProperty Name="aspectoPositivo" ColumnName="aspectoPositivo" />
+                <ScalarProperty Name="aspectoNegativo" ColumnName="aspectoNegativo" />
                 <ScalarProperty Name="Id_hoja_resultados" ColumnName="Id_hoja_resultados" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -529,14 +479,6 @@
                 <ScalarProperty Name="Legal" ColumnName="Legal" />
                 <ScalarProperty Name="Comentario" ColumnName="Comentario" />
                 <ScalarProperty Name="Id_hoja_resultados" ColumnName="Id_hoja_resultados" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tipo_Factor">
-            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Tipo_Factor">
-              <MappingFragment StoreEntitySet="Tipo_Factor">
-                <ScalarProperty Name="id_tipo_factor" ColumnName="id_tipo_factor" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

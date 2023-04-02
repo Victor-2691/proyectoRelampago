@@ -17,7 +17,7 @@ namespace Capa_Negocios
 
         public int guardarIdea(int idCaracteristica, string idea, int idHojaResultado)
         {
-            using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+            using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
             {
                 try
                 {
@@ -47,7 +47,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     var objIdea = db.Ideas.Find(idIdea);
 
@@ -71,7 +71,7 @@ namespace Capa_Negocios
             try
             {
 
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     var lista = from d in db.Ideas
                                 select d;
@@ -92,7 +92,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
                 {
                     Ideas new_idea = new Ideas();
                     new_idea = db.Ideas.Find(idIdea);

@@ -16,12 +16,11 @@ namespace capa_datos
     {
         public int Id_factor { get; set; }
         public int Id_idea { get; set; }
-        public string factor { get; set; }
-        public bool id_tipo_factor { get; set; }
+        public string aspectoPositivo { get; set; }
+        public string aspectoNegativo { get; set; }
         public int Id_hoja_resultados { get; set; }
     
         public virtual Hoja_Resultados Hoja_Resultados { get; set; }
         public virtual Ideas Ideas { get; set; }
-        public virtual Tipo_Factor Tipo_Factor { get; set; }
     }
 }

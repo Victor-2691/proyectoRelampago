@@ -131,10 +131,7 @@ namespace proyectoRelanpago.Paginas
         [WebMethod]
         public static object validarDatos()
         {
-
-
-
-            return new { success = true};
+            return new { success = true };
         }
     }
 }
