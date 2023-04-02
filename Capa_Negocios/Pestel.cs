@@ -22,7 +22,8 @@ namespace Capa_Negocios
                     Pestel new_pestel = new Pestel();
                     
 
-                    db.Pestels.Add();
+
+                    //db.Pestels.Add();
                     db.SaveChanges();
                 }
 

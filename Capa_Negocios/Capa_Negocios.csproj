@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Características.cs" />
+    <Compile Include="Caracteristicas.cs" />
     <Compile Include="Factores.cs" />
     <Compile Include="Ideas.cs" />
     <Compile Include="metodosBD.cs" />

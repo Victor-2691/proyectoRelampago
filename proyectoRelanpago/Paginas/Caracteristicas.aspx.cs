@@ -15,7 +15,6 @@ namespace proyectoRelanpago.Paginas
             {
                 Response.Redirect("~/Paginas/pagina_login.aspx");
             }
-
         }
     }
 }

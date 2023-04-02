@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Capa_Negocios
 {
-    public class Características
+    public class Caracteristicas
     {
         #region Caracteristicas
 
@@ -104,7 +104,6 @@ namespace Capa_Negocios
 
         private DataTable ConvertirListaToDataTable(IList data)
         {
-
             var properties = TypeDescriptor.GetProperties(typeof(Idea));
 
             DataTable table = new DataTable();
