@@ -97,7 +97,17 @@ namespace Capa_Negocios
             }
         }
 
+        public void agregarTipoFactor(string estado)
+        {
+            using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+            {
+                Tipo_Factor new_factor = new Tipo_Factor();
+                new_factor.Estado = estado;
 
+                db.Tipo_Factor.Add(new_factor);
+                db.SaveChanges();
+            }
+        }
 
         #region MetodosInternos
 
