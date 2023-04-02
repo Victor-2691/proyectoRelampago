@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="../Estilos/Ideas.css" rel="stylesheet" />
-    
+
     <div class="divParrafoEx">
         <p class="parrEx">Digite 3 requerimientos o ideas (trate de ser breve y claro)</p>
     </div>
@@ -15,49 +15,11 @@
 
         <div class="contInfo">
             <div class="contIdeas" runat="server" id="divCaracteristicas">
-                <div>
-                    <input class="boton" type="button" value="button" data-toggle="modal" data-target="#exampleModal" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button2" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button3" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button4" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button5" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button6" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button7" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button8" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button9" type="button" value="button" />
-                </div>
-
-                <div>
-                    <input class="boton" id="Button10" type="button" value="button" />
-                </div>
             </div>
         </div>
 
         <div class="divBoton">
+            <input class="botonGuardar" type="button" value="CONFIRMAR IDEAS" onclick="validar();"/>
             <asp:Button class="botonGuardar" ID="btnContinuar" runat="server" Text="CONFIRMAR IDEAS" />
         </div>
     </div>
@@ -65,47 +27,14 @@
     <div runat="server" id="divModals">
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="background-color: #9dbab5">
-                <div class="modal-body">
-
-                    <div class="divTituloIdeas">
-                        <p>Ideas</p>
-                    </div>
-
-                    <div class="divIdeas">
-                        <div>
-                            <img src="../Recursos/number1_32.png" alt="Alternate Text" class="number" />
-                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 1">
-                        </div>
-
-                        <div>
-                            <img src="../Recursos/number2_32.png" alt="Alternate Text" class="number" />
-                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 2">
-                        </div>
-
-                        <div>
-                            <img src="../Recursos/number3_32.png" alt="Alternate Text" class="number" />
-                            <input type="text" class="txt" name="IdeaCaracteristica1" autocomplete="off" placeholder="Idea 3">
-                        </div>
-                    </div>
-
-                    <div class="divBotonGuardar">
-                        <input class="botonGuardar" type="button" id="btnGuardar" value="GUARDAR" onclick="guardar('1')">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
 
-        function guardar(idCaracteristica) {
-            var ideas = document.getElementsByName("IdeaCaracteristica" + idCaracteristica)
+        function guardar(idCaracteristica, idHojaResultado) {
+            var ideas = document.getElementsByName("IdeaCaracteristica" + idCaracteristica);
             var ideasJSON = "";
-            var modalCerrar = "#Caracteristica" + idCaracteristica
+            var modalCerrar = "#Caracteristica" + idCaracteristica;
+            var txtIDs = document.getElementById("IDCaracteristica" + idCaracteristica);
+            var ids = document.getElementById("IDCaracteristica" + idCaracteristica).value;
 
             for (var i = 0; i < ideas.length; i++) {
                 if (i != ideas.length - 1) {
@@ -119,16 +48,40 @@
             $.ajax({
                 url: "Ideas.aspx/guardarIdeas",
                 data: "{ideas:" + JSON.stringify(ideasJSON) +
-                    ", idCaracteristica:" + JSON.stringify(idCaracteristica) + "}",
+                    ", idCaracteristica:" + JSON.stringify(idCaracteristica) +
+                    ", idHojaResultado:" + JSON.stringify(idHojaResultado) +
+                    ", idsRaw:" + JSON.stringify(ids) + "}",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (resultado) {
                     if (resultado.d.success === true) {
+                        var idsModificar = resultado.d.ids;
+                        txtIDs.value = idsModificar;
                         $(modalCerrar).modal("hide");
                     }
                     else {
-                        console.log("Error al guardar")
+                        console.log("Error al guardar");
+                    }
+                }, failure: function (jqXHR, textStatus, errorThrown) {
+                    console.log("Status: " + jqXHR.status + "; Error: " + jqXHR.responseText);
+                }
+            });
+        }
+
+        function validar() {
+            $.ajax({
+                url: "Ideas.aspx/validarDatos",
+                data: {},
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (resultado) {
+                    if (resultado.d.success === true) {
+                        window.location.href = "../Paginas/Factores.aspx";                        
+                    }
+                    else {
+                        console.log("Error al validar datos");
                     }
                 }, failure: function (jqXHR, textStatus, errorThrown) {
                     console.log("Status: " + jqXHR.status + "; Error: " + jqXHR.responseText);

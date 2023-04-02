@@ -35,34 +35,33 @@ namespace proyectoRelanpago.Paginas
                 else
                 {
                     ///*Insertamos la Hoja de trabajo*/
-                    //string usuario = (string)Session["Usuario"];
-                    //DateTime fecha = DateTime.Today;
-                    //bool estado = false;
-                    //int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
+                    string usuario = (string)Session["Usuario"];
+                    DateTime fecha = DateTime.Today;
+                    bool estado = false;
+                    int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
 
-                    Session["idHojaResultado"] = 7;
+                    Session["idHojaResultado"] = numerohoja;
 
                     ///*Insertamos las caracteristicas en un ciclo*/
-                    //String[] arraycaracteristicas = new String[10];
-                    //arraycaracteristicas[0] = txtCarac1.Text.Trim();
-                    //arraycaracteristicas[1] = txtCarac2.Text.Trim();
-                    //arraycaracteristicas[2] = txtCarac3.Text.Trim();
-                    //arraycaracteristicas[3] = txtCarac4.Text.Trim();
-                    //arraycaracteristicas[4] = txtCarac5.Text.Trim();
-                    //arraycaracteristicas[5] = txtCarac6.Text.Trim();
-                    //arraycaracteristicas[6] = txtCarac7.Text.Trim();
-                    //arraycaracteristicas[7] = txtCarac8.Text.Trim();
-                    //arraycaracteristicas[8] = txtCarac9.Text.Trim();
-                    //arraycaracteristicas[9] = txtCarac10.Text.Trim();
+                    String[] arraycaracteristicas = new String[10];
+                    arraycaracteristicas[0] = txtCarac1.Text.Trim();
+                    arraycaracteristicas[1] = txtCarac2.Text.Trim();
+                    arraycaracteristicas[2] = txtCarac3.Text.Trim();
+                    arraycaracteristicas[3] = txtCarac4.Text.Trim();
+                    arraycaracteristicas[4] = txtCarac5.Text.Trim();
+                    arraycaracteristicas[5] = txtCarac6.Text.Trim();
+                    arraycaracteristicas[6] = txtCarac7.Text.Trim();
+                    arraycaracteristicas[7] = txtCarac8.Text.Trim();
+                    arraycaracteristicas[8] = txtCarac9.Text.Trim();
+                    arraycaracteristicas[9] = txtCarac10.Text.Trim();
 
-                    //for (int i = 0; i < arraycaracteristicas.Length; i++)
-                    //{
-                    //    if (arraycaracteristicas[i] != "")
-                    //    {
-                    //        c1.agregarCaracteristica(usuario, numerohoja, arraycaracteristicas[i]);
-
-                    //    }
-                    //}
+                    for (int i = 0; i < arraycaracteristicas.Length; i++)
+                    {
+                        if (arraycaracteristicas[i] != "")
+                        {
+                            c1.agregarCaracteristica(usuario, numerohoja, arraycaracteristicas[i]);
+                        }
+                    }
 
                     Response.Redirect("~/Paginas/Ideas.aspx", false);
                 }

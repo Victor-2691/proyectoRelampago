@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,25 +15,52 @@ namespace Capa_Negocios
     {
         #region Ideas
 
-        public void AgregarIdea(string idea)
+        public int guardarIdea(int idCaracteristica, string idea, int idHojaResultado)
         {
             using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
             {
                 try
                 {
+                    Ideas iIdea = new Ideas
+                    {
+                        Id_caracteristica = idCaracteristica,
+                        idea = idea,
+                        Id_hoja_resultados = idHojaResultado
+                    };
 
-                    Ideas new_idea = new Ideas();
-                    new_idea.idea = idea;
-
-                    db.Ideas.Add(new_idea);
+                    db.Ideas.Add(iIdea);
                     db.SaveChanges();
 
+                    var query = from i in db.Ideas
+                                 select i.Id_idea;
+
+                    return query.Max();
                 }
                 catch (Exception)
                 {
-
                     throw;
                 }
+            }
+        }
+
+        public void modificarIdea(int idIdea, string ideaNueva)
+        {
+            try
+            {
+                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
+                {
+                    var objIdea = db.Ideas.Find(idIdea);
+
+                    objIdea.idea = ideaNueva;
+
+                    db.Entry(objIdea).State = EntityState.Modified;
+                    db.SaveChanges();                                        
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
             }
         }
 
@@ -58,27 +86,6 @@ namespace Capa_Negocios
             }
 
             return dt;
-        }
-
-        public void ModificarIdeas(int idIdea, string idea)
-        {
-            try
-            {
-                using (tiusr7pl_proyecto_relampagoEntities1 db = new tiusr7pl_proyecto_relampagoEntities1())
-                {
-                    Ideas new_idea = new Ideas();
-                    new_idea.Id_idea = idIdea;
-                    new_idea.idea = idea;
-
-                    db.Entry(new_idea).State = System.Data.Entity.EntityState.Modified;
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
         }
 
         public void EliminarIdeas(int idIdea)
