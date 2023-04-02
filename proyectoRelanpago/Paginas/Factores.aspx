@@ -13,25 +13,28 @@
             <p>Lista de factores</p>
         </div>
 
-
-        <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" OnRowEditing="grdFactores_RowEditing">
-            <Columns>
-                <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
-                <asp:BoundField DataField="Caracteristica" HeaderText="Característica" ReadOnly="True" />
-                <asp:BoundField DataField="Idea" HeaderText="Idea" ReadOnly="True" />
-                <asp:BoundField DataField="AspectoPositivo" HeaderText="Aspecto positivo" />
-                <asp:BoundField DataField="AspectoNegativo" HeaderText="Aspecto negativo" />
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" CancelText="Cancelar" UpdateText="Guardar" />
-            </Columns>
-            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-            <HeaderStyle BackColor="#000" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-            <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-            <SortedAscendingCellStyle BackColor="#F7F7F7" />
-            <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
-            <SortedDescendingCellStyle BackColor="#E5E5E5" />
-            <SortedDescendingHeaderStyle BackColor="#242121" />
-        </asp:GridView>
+        <div class="table-responsive">
+            <asp:GridView ID="grdFactores" runat="server" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" OnRowEditing="grdFactores_RowEditing" DataKeyNames="ID" OnRowCancelingEdit="grdFactores_RowCancelingEdit" OnRowUpdating="grdFactores_RowUpdating">
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="ID" Visible="False" />
+                    <asp:BoundField DataField="Caracteristica" HeaderText="Característica" ReadOnly="True" />
+                    <asp:BoundField DataField="Idea" HeaderText="Idea" ReadOnly="True" />
+                    <asp:BoundField DataField="AspectoPositivo" HeaderText="Aspecto positivo" />
+                    <asp:BoundField DataField="AspectoNegativo" HeaderText="Aspecto negativo" />
+                    <asp:CommandField ButtonType="Button" ShowEditButton="True" CancelText="Cancelar" UpdateText="Guardar" >
+                    <ControlStyle BackColor="Transparent" BorderColor="#1191DE" BorderWidth="1px" CssClass="editar" Font-Names="Roboto" />
+                    </asp:CommandField>
+                </Columns>
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle BackColor="#000" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                <SelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                <SortedAscendingHeaderStyle BackColor="#4B4B4B" />
+                <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                <SortedDescendingHeaderStyle BackColor="#242121" />
+            </asp:GridView>
+        </div>
 
         <div class="divBoton">
             <asp:Button class="botonSiguiente" ID="btnContinuar" runat="server" Text="CONFIRMAR FACTORES" />

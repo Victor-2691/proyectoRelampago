@@ -1,0 +1,145 @@
+﻿.parrEx {
+    font-weight: bold;
+    font-size: 22px;
+    font-family: Roboto;
+}
+
+.divTitulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #FFF;
+    -webkit-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 2px 10px 0px rgba(0,0,0,0.75);
+    margin-top: 60px;
+}
+
+.divBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding-bottom: 40px
+}
+
+.botonSiguiente {
+    font-family: Roboto;
+    font-size: 16px;
+    background-color: transparent;
+    border-width: 1px;
+    border-color: #1191DE;
+    border-radius: 50px;
+    width: 600px;
+    height: 40px;
+}
+
+.encabezados {
+    color: white;
+    background-color: #000;
+    font-weight: bold;
+}
+
+th, td {
+    padding: 12px;
+    white-space: nowrap;
+}
+
+    th:nth-child(2) {
+        text-align: center;
+    }
+
+    td:nth-child(2) {
+        width: 150px;
+        text-align: center;
+    }
+
+table {
+    margin: auto;
+    width: 100%;
+}
+
+img {
+    cursor: pointer;
+}
+
+.botonModal {
+    border-width: 0px;
+    padding: 0px;
+    background-color: transparent;
+}
+
+.divClasificacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divPestel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+.divParte {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-right: 47px;
+    gap: 25px;
+}
+
+.comentario {
+    min-width: 280px;
+}
+
+.divBotonGuardar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.botonGuardar {
+    font-family: Roboto;
+    font-size: 16px;
+    border-width: 1px;
+    border-color: #22A2CE;
+    border-radius: 50px;
+    width: 170px;
+    height: 45px;
+}
+
+.select {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.label {
+    margin-bottom: 8px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 22px;
+    color: black;
+}

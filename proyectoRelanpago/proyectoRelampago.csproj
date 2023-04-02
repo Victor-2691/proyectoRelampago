@@ -125,7 +125,9 @@
     <Content Include="Estilos\Form.css" />
     <Content Include="Estilos\Ideas.css" />
     <Content Include="Estilos\Login.css" />
+    <Content Include="Estilos\Pestel.css" />
     <Content Include="Estilos\Principal.css" />
+    <Content Include="Estilos\ResumenPestel.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -142,6 +144,8 @@
     <Content Include="Paginas\Factores.aspx" />
     <Content Include="Paginas\Ideas.aspx" />
     <Content Include="Paginas\pagina_login.aspx" />
+    <Content Include="Paginas\Pestel.aspx" />
+    <Content Include="Paginas\ResumenPestel.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
     <Content Include="Recursos\number2_32.png" />
@@ -153,6 +157,7 @@
     <Content Include="Recursos\number8_32.png" />
     <Content Include="Recursos\number9_32.png" />
     <Content Include="Recursos\PESTEL.jpg" />
+    <Content Include="Recursos\signoMas_32.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -241,6 +246,20 @@
     </Compile>
     <Compile Include="Paginas\pagina_login.aspx.designer.cs">
       <DependentUpon>pagina_login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Pestel.aspx.cs">
+      <DependentUpon>Pestel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Pestel.aspx.designer.cs">
+      <DependentUpon>Pestel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ResumenPestel.aspx.cs">
+      <DependentUpon>ResumenPestel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ResumenPestel.aspx.designer.cs">
+      <DependentUpon>ResumenPestel.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
