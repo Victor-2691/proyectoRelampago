@@ -13,7 +13,7 @@ namespace Capa_Negocios
 {
     public class Factores
     {
-        public void agregarFactores(string factor)
+        public void agregarFactores(string factor, int idIdea, bool idTipoFactor)
         {
             try
             {
@@ -21,6 +21,8 @@ namespace Capa_Negocios
                 {
                     Factore new_factor = new Factore();
                     new_factor.factor= factor;
+                    new_factor.Id_idea= idIdea;
+                    new_factor.id_tipo_factor = idTipoFactor; 
 
                     db.Factores.Add(new_factor);
                     db.SaveChanges();
