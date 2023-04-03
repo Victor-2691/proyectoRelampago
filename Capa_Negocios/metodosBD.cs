@@ -17,7 +17,7 @@ namespace Capa_Negocios
         {
             try
             {
-                tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3();
+                tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
                 var query = from u in db.Usuario
                             select u;
 
