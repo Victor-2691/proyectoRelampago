@@ -25,7 +25,9 @@ namespace capa_datos
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Afecta> Afecta { get; set; }
         public virtual DbSet<Caracteristicas> Caracteristicas { get; set; }
+        public virtual DbSet<Clasificacion> Clasificacion { get; set; }
         public virtual DbSet<Factores> Factores { get; set; }
         public virtual DbSet<Hoja_Resultados> Hoja_Resultados { get; set; }
         public virtual DbSet<Ideas> Ideas { get; set; }

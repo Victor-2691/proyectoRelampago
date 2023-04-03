@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="tiusr7pl_proyecto_relampagoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Afecta">
+          <Key>
+            <PropertyRef Name="idInfluye" />
+          </Key>
+          <Property Name="idInfluye" Type="int" Nullable="false" />
+          <Property Name="Influye" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Caracteristicas">
           <Key>
             <PropertyRef Name="Id_caracteristica" />
@@ -13,6 +20,13 @@
           <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="caracteristica" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clasificacion">
+          <Key>
+            <PropertyRef Name="idClasificacion" />
+          </Key>
+          <Property Name="idClasificacion" Type="int" Nullable="false" />
+          <Property Name="Clasificacion" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Factores">
           <Key>
@@ -46,16 +60,16 @@
           <Key>
             <PropertyRef Name="Id_pestel" />
           </Key>
-          <Property Name="Id_factor" Type="int" Nullable="false" />
           <Property Name="Id_pestel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_factor" Type="int" Nullable="false" />
           <Property Name="tipoFactor" Type="bit" Nullable="false" />
-          <Property Name="clasificacion_factor" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="Politico" Type="bit" />
-          <Property Name="Economico" Type="bit" />
-          <Property Name="Social" Type="bit" />
-          <Property Name="Tecnologico" Type="bit" />
-          <Property Name="Ecologico" Type="bit" />
-          <Property Name="Legal" Type="bit" />
+          <Property Name="clasificacion_factor" Type="int" Nullable="false" />
+          <Property Name="Politico" Type="int" Nullable="false" />
+          <Property Name="Economico" Type="int" Nullable="false" />
+          <Property Name="Social" Type="int" Nullable="false" />
+          <Property Name="Tecnologico" Type="int" Nullable="false" />
+          <Property Name="Ecologico" Type="int" Nullable="false" />
+          <Property Name="Legal" Type="int" Nullable="false" />
           <Property Name="Comentario" Type="varchar" MaxLength="250" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
         </EntityType>
@@ -150,6 +164,90 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Pestel_Afecta">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Politico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta1">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Economico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta2">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta3">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Tecnologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta4">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Ecologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta5">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Legal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Clasificacion">
+          <End Role="Clasificacion" Type="Self.Clasificacion" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasificacion">
+              <PropertyRef Name="idClasificacion" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="clasificacion_factor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pestel_Factores">
           <End Role="Hoja_Resultados" Type="Self.Hoja_Resultados" Multiplicity="1" />
           <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
@@ -163,7 +261,9 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="tiusr7pl_proyecto_relampagoModelStoreContainer">
+          <EntitySet Name="Afecta" EntityType="Self.Afecta" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" Schema="tiusr7pl_relampago" store:Type="Tables" />
+          <EntitySet Name="Clasificacion" EntityType="Self.Clasificacion" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Factores" EntityType="Self.Factores" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" Schema="tiusr7pl_relampago" store:Type="Tables" />
           <EntitySet Name="Ideas" EntityType="Self.Ideas" Schema="tiusr7pl_relampago" store:Type="Tables" />
@@ -197,6 +297,34 @@
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
             <End Role="Ideas" EntitySet="Ideas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta" Association="Self.FK_Pestel_Afecta">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta1" Association="Self.FK_Pestel_Afecta1">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta2" Association="Self.FK_Pestel_Afecta2">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta3" Association="Self.FK_Pestel_Afecta3">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta4" Association="Self.FK_Pestel_Afecta4">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta5" Association="Self.FK_Pestel_Afecta5">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Clasificacion" Association="Self.FK_Pestel_Clasificacion">
+            <End Role="Clasificacion" EntitySet="Clasificacion" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pestel_Factores" Association="Self.FK_Pestel_Factores">
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
             <End Role="Pestel" EntitySet="Pestel" />
@@ -207,6 +335,19 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tiusr7pl_proyecto_relampagoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Afecta">
+          <Key>
+            <PropertyRef Name="idInfluye" />
+          </Key>
+          <Property Name="idInfluye" Type="Int32" Nullable="false" />
+          <Property Name="Influye" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pestel" Relationship="Self.FK_Pestel_Afecta" FromRole="Afecta" ToRole="Pestel" />
+          <NavigationProperty Name="Pestel1" Relationship="Self.FK_Pestel_Afecta1" FromRole="Afecta" ToRole="Pestel" />
+          <NavigationProperty Name="Pestel2" Relationship="Self.FK_Pestel_Afecta2" FromRole="Afecta" ToRole="Pestel" />
+          <NavigationProperty Name="Pestel3" Relationship="Self.FK_Pestel_Afecta3" FromRole="Afecta" ToRole="Pestel" />
+          <NavigationProperty Name="Pestel4" Relationship="Self.FK_Pestel_Afecta4" FromRole="Afecta" ToRole="Pestel" />
+          <NavigationProperty Name="Pestel5" Relationship="Self.FK_Pestel_Afecta5" FromRole="Afecta" ToRole="Pestel" />
+        </EntityType>
         <EntityType Name="Caracteristicas">
           <Key>
             <PropertyRef Name="Id_caracteristica" />
@@ -218,6 +359,14 @@
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Caracteristicas_Hoja_Resultados" FromRole="Caracteristicas" ToRole="Hoja_Resultados" />
           <NavigationProperty Name="Usuario1" Relationship="Self.FK_Caracteristicas_Usuario" FromRole="Caracteristicas" ToRole="Usuario" />
           <NavigationProperty Name="Ideas" Relationship="Self.FK_Ideas_Caracteristicas" FromRole="Caracteristicas" ToRole="Ideas" />
+        </EntityType>
+        <EntityType Name="Clasificacion">
+          <Key>
+            <PropertyRef Name="idClasificacion" />
+          </Key>
+          <Property Name="idClasificacion" Type="Int32" Nullable="false" />
+          <Property Name="Clasificacion1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pestel" Relationship="Self.FK_Pestel_Clasificacion" FromRole="Clasificacion" ToRole="Pestel" />
         </EntityType>
         <EntityType Name="Factores">
           <Key>
@@ -261,18 +410,25 @@
           <Key>
             <PropertyRef Name="Id_pestel" />
           </Key>
-          <Property Name="Id_factor" Type="Int32" Nullable="false" />
           <Property Name="Id_pestel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_factor" Type="Int32" Nullable="false" />
           <Property Name="tipoFactor" Type="Boolean" Nullable="false" />
-          <Property Name="clasificacion_factor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Politico" Type="Boolean" />
-          <Property Name="Economico" Type="Boolean" />
-          <Property Name="Social" Type="Boolean" />
-          <Property Name="Tecnologico" Type="Boolean" />
-          <Property Name="Ecologico" Type="Boolean" />
-          <Property Name="Legal" Type="Boolean" />
+          <Property Name="clasificacion_factor" Type="Int32" Nullable="false" />
+          <Property Name="Politico" Type="Int32" Nullable="false" />
+          <Property Name="Economico" Type="Int32" Nullable="false" />
+          <Property Name="Social" Type="Int32" Nullable="false" />
+          <Property Name="Tecnologico" Type="Int32" Nullable="false" />
+          <Property Name="Ecologico" Type="Int32" Nullable="false" />
+          <Property Name="Legal" Type="Int32" Nullable="false" />
           <Property Name="Comentario" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Afecta" Relationship="Self.FK_Pestel_Afecta" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Afecta1" Relationship="Self.FK_Pestel_Afecta1" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Afecta2" Relationship="Self.FK_Pestel_Afecta2" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Afecta3" Relationship="Self.FK_Pestel_Afecta3" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Afecta4" Relationship="Self.FK_Pestel_Afecta4" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Afecta5" Relationship="Self.FK_Pestel_Afecta5" FromRole="Pestel" ToRole="Afecta" />
+          <NavigationProperty Name="Clasificacion" Relationship="Self.FK_Pestel_Clasificacion" FromRole="Pestel" ToRole="Clasificacion" />
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Pestel_Factores" FromRole="Pestel" ToRole="Hoja_Resultados" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -284,6 +440,78 @@
           <NavigationProperty Name="Caracteristicas" Relationship="Self.FK_Caracteristicas_Usuario" FromRole="Usuario" ToRole="Caracteristicas" />
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Hoja_Resultados_Usuario" FromRole="Usuario" ToRole="Hoja_Resultados" />
         </EntityType>
+        <Association Name="FK_Pestel_Afecta">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Politico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta1">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Economico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta2">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Social" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta3">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Tecnologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta4">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Ecologico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Afecta5">
+          <End Role="Afecta" Type="Self.Afecta" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Afecta">
+              <PropertyRef Name="idInfluye" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="Legal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Caracteristicas_Hoja_Resultados">
           <End Role="Hoja_Resultados" Type="Self.Hoja_Resultados" Multiplicity="1" />
           <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="*" />
@@ -317,6 +545,18 @@
             </Principal>
             <Dependent Role="Ideas">
               <PropertyRef Name="Id_caracteristica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pestel_Clasificacion">
+          <End Role="Clasificacion" Type="Self.Clasificacion" Multiplicity="1" />
+          <End Role="Pestel" Type="Self.Pestel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clasificacion">
+              <PropertyRef Name="idClasificacion" />
+            </Principal>
+            <Dependent Role="Pestel">
+              <PropertyRef Name="clasificacion_factor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -381,12 +621,38 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Afecta" EntityType="Self.Afecta" />
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" />
+          <EntitySet Name="Clasificacion" EntityType="Self.Clasificacion" />
           <EntitySet Name="Factores" EntityType="Self.Factores" />
           <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" />
           <EntitySet Name="Ideas" EntityType="Self.Ideas" />
           <EntitySet Name="Pestel" EntityType="Self.Pestel" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Pestel_Afecta" Association="Self.FK_Pestel_Afecta">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta1" Association="Self.FK_Pestel_Afecta1">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta2" Association="Self.FK_Pestel_Afecta2">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta3" Association="Self.FK_Pestel_Afecta3">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta4" Association="Self.FK_Pestel_Afecta4">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Afecta5" Association="Self.FK_Pestel_Afecta5">
+            <End Role="Afecta" EntitySet="Afecta" />
+            <End Role="Pestel" EntitySet="Pestel" />
+          </AssociationSet>
           <AssociationSet Name="FK_Caracteristicas_Hoja_Resultados" Association="Self.FK_Caracteristicas_Hoja_Resultados">
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
             <End Role="Caracteristicas" EntitySet="Caracteristicas" />
@@ -398,6 +664,10 @@
           <AssociationSet Name="FK_Ideas_Caracteristicas" Association="Self.FK_Ideas_Caracteristicas">
             <End Role="Caracteristicas" EntitySet="Caracteristicas" />
             <End Role="Ideas" EntitySet="Ideas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pestel_Clasificacion" Association="Self.FK_Pestel_Clasificacion">
+            <End Role="Clasificacion" EntitySet="Clasificacion" />
+            <End Role="Pestel" EntitySet="Pestel" />
           </AssociationSet>
           <AssociationSet Name="FK_Factores_Hoja_Resultados" Association="Self.FK_Factores_Hoja_Resultados">
             <End Role="Hoja_Resultados" EntitySet="Hoja_Resultados" />
@@ -426,6 +696,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities">
+          <EntitySetMapping Name="Afecta">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Afecta">
+              <MappingFragment StoreEntitySet="Afecta">
+                <ScalarProperty Name="idInfluye" ColumnName="idInfluye" />
+                <ScalarProperty Name="Influye" ColumnName="Influye" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Caracteristicas">
             <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Caracteristicas">
               <MappingFragment StoreEntitySet="Caracteristicas">
@@ -433,6 +711,14 @@
                 <ScalarProperty Name="usuario" ColumnName="usuario" />
                 <ScalarProperty Name="caracteristica" ColumnName="caracteristica" />
                 <ScalarProperty Name="Id_hoja_resultados" ColumnName="Id_hoja_resultados" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clasificacion">
+            <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Clasificacion">
+              <MappingFragment StoreEntitySet="Clasificacion">
+                <ScalarProperty Name="idClasificacion" ColumnName="idClasificacion" />
+                <ScalarProperty Name="Clasificacion1" ColumnName="Clasificacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -470,8 +756,8 @@
           <EntitySetMapping Name="Pestel">
             <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Pestel">
               <MappingFragment StoreEntitySet="Pestel">
-                <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
                 <ScalarProperty Name="Id_pestel" ColumnName="Id_pestel" />
+                <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
                 <ScalarProperty Name="tipoFactor" ColumnName="tipoFactor" />
                 <ScalarProperty Name="clasificacion_factor" ColumnName="clasificacion_factor" />
                 <ScalarProperty Name="Politico" ColumnName="Politico" />

@@ -14,19 +14,26 @@ namespace capa_datos
     
     public partial class Pestel
     {
-        public int Id_factor { get; set; }
         public int Id_pestel { get; set; }
+        public int Id_factor { get; set; }
         public bool tipoFactor { get; set; }
-        public string clasificacion_factor { get; set; }
-        public Nullable<bool> Politico { get; set; }
-        public Nullable<bool> Economico { get; set; }
-        public Nullable<bool> Social { get; set; }
-        public Nullable<bool> Tecnologico { get; set; }
-        public Nullable<bool> Ecologico { get; set; }
-        public Nullable<bool> Legal { get; set; }
+        public int clasificacion_factor { get; set; }
+        public int Politico { get; set; }
+        public int Economico { get; set; }
+        public int Social { get; set; }
+        public int Tecnologico { get; set; }
+        public int Ecologico { get; set; }
+        public int Legal { get; set; }
         public string Comentario { get; set; }
         public int Id_hoja_resultados { get; set; }
     
+        public virtual Afecta Afecta { get; set; }
+        public virtual Afecta Afecta1 { get; set; }
+        public virtual Afecta Afecta2 { get; set; }
+        public virtual Afecta Afecta3 { get; set; }
+        public virtual Afecta Afecta4 { get; set; }
+        public virtual Afecta Afecta5 { get; set; }
+        public virtual Clasificacion Clasificacion { get; set; }
         public virtual Hoja_Resultados Hoja_Resultados { get; set; }
     }
 }
