@@ -12,56 +12,39 @@ namespace Capa_Negocios
 {
     public class PestelMethods
     {
-
-        public void agregarInfoPestel(string clasificacion, bool economico, bool politico, bool social, bool tecnologico, bool ecologico, bool legal, string comentario, int idFactor)
+        public int guardarPestel(int idFactor, string clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion, int idHojaResultado)
         {
-            try
+            using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
             {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                try
                 {
-                    Pestel new_pestel = new Pestel();
-                    new_pestel.clasificacion_factor = clasificacion;
-                    new_pestel.Economico = economico;
-                    new_pestel.Politico = politico;
-                    new_pestel.Social = social;
-                    new_pestel.Tecnologico = tecnologico;
-                    new_pestel.Ecologico = ecologico;
-                    new_pestel.Legal = legal;
-                    new_pestel.Comentario = comentario;
-                    new_pestel.Id_factor = idFactor;
+                    Pestel iPestel = new Pestel
+                    {
+                        Id_factor = idFactor,
+                        clasificacion_factor = clasificacion,
+                        Politico = politico,
+                        Economico = economico,
+                        Social = social,
+                        Tecnologico = tecnologico,
+                        Ecologico = ecologico,
+                        Legal = legal,
+                        Comentario = justificacion,
+                        Id_hoja_resultados = idHojaResultado
+                    };
 
-                    db.Pestel.Add(new_pestel);
+                    db.Pestel.Add(iPestel);
                     db.SaveChanges();
+
+                    var query = from i in db.Ideas
+                                select i.Id_idea;
+
+                    return query.Max();
                 }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-
-        }
-
-        public DataTable verInfoPestel()
-        {
-
-            DataTable dt = new DataTable();
-
-            try
-            {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                catch (Exception)
                 {
-                    var lista = from d in db.Pestel
-                                select d;
-                    dt = ConvertirListaToDataTable(lista.ToList());
+                    throw;
                 }
             }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-            return dt;
         }
 
         public void modificasrInfoPestel(int id, string clasificacion, bool economico, bool politico, bool social, bool tecnologico, bool ecologico, bool legal, string comentario)
@@ -90,51 +73,5 @@ namespace Capa_Negocios
                 throw new Exception(ex.Message);
             }
         }
-
-        public void eliminarInfoPestel(int id)
-        {
-            try
-            {
-                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
-                {
-                    Pestel new_pestel = new Pestel();
-                    new_pestel = db.Pestel.Find(id);
-
-                    db.Pestel.Remove(new_pestel);
-                    db.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        #region MetodosInternos
-
-        private DataTable ConvertirListaToDataTable(IList data)
-        {
-
-            var properties = TypeDescriptor.GetProperties(typeof(Idea));
-
-            DataTable table = new DataTable();
-
-            foreach (PropertyDescriptor prop in properties)
-            {
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-            }
-
-            foreach (Idea item in data)
-            {
-                DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties) row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-            }
-            return table;
-        }
-
-        #endregion
-
     }
 }
