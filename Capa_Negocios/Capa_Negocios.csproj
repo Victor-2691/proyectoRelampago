@@ -56,7 +56,7 @@
     <Compile Include="HojaResultado.cs" />
     <Compile Include="Idea.cs" />
     <Compile Include="metodosBD.cs" />
-    <Compile Include="Pestel.cs" />
+    <Compile Include="PestelMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
