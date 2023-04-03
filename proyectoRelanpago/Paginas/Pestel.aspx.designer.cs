@@ -15,6 +15,15 @@ namespace proyectoRelanpago.Paginas
     {
 
         /// <summary>
+        /// factores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl factores;
+
+        /// <summary>
         /// btnContinuar control.
         /// </summary>
         /// <remarks>

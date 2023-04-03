@@ -11,7 +11,7 @@ namespace Capa_Negocios
   public class HojaResultado
     {
 
-        private tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3();
+        private tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities();
         public int agregarhojatrabajo(string usuario, DateTime fecha, bool estado)
         {
             try

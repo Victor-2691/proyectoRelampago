@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d1a50c5b49fc44bd88623af773594268" Name="Diagram1">
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Caracteristicas" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Factores" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Ideas" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+      <Diagram DiagramId="297665222f164675878ea80d491f7641" Name="Diagram1">
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Caracteristicas" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Factores" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Hoja_Resultados" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Ideas" Width="1.5" PointX="7.5" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Pestel" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Usuario" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiusr7pl_proyecto_relampagoModel.Usuario" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Hoja_Resultados" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Caracteristicas_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="tiusr7pl_proyecto_relampagoModel.FK_Ideas_Caracteristicas" ManuallyRouted="false" />

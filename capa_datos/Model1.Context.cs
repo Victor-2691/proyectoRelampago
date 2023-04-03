@@ -13,10 +13,10 @@ namespace capa_datos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class tiusr7pl_proyecto_relampagoEntities3 : DbContext
+    public partial class tiusr7pl_proyecto_relampagoEntities : DbContext
     {
-        public tiusr7pl_proyecto_relampagoEntities3()
-            : base("name=tiusr7pl_proyecto_relampagoEntities3")
+        public tiusr7pl_proyecto_relampagoEntities()
+            : base("name=tiusr7pl_proyecto_relampagoEntities")
         {
         }
     

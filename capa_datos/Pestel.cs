@@ -16,6 +16,7 @@ namespace capa_datos
     {
         public int Id_factor { get; set; }
         public int Id_pestel { get; set; }
+        public bool tipoFactor { get; set; }
         public string clasificacion_factor { get; set; }
         public Nullable<bool> Politico { get; set; }
         public Nullable<bool> Economico { get; set; }

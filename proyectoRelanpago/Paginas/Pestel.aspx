@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody runat="server" id="factores">
                     <tr>
                         <td>Programas técnicos o capacitaciones rápidas con mercado laboral</td>
                         <td>

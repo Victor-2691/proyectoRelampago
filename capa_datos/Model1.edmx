@@ -48,6 +48,7 @@
           </Key>
           <Property Name="Id_factor" Type="int" Nullable="false" />
           <Property Name="Id_pestel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tipoFactor" Type="bit" Nullable="false" />
           <Property Name="clasificacion_factor" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Politico" Type="bit" />
           <Property Name="Economico" Type="bit" />
@@ -262,6 +263,7 @@
           </Key>
           <Property Name="Id_factor" Type="Int32" Nullable="false" />
           <Property Name="Id_pestel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipoFactor" Type="Boolean" Nullable="false" />
           <Property Name="clasificacion_factor" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Politico" Type="Boolean" />
           <Property Name="Economico" Type="Boolean" />
@@ -378,7 +380,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="tiusr7pl_proyecto_relampagoEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" />
           <EntitySet Name="Factores" EntityType="Self.Factores" />
           <EntitySet Name="Hoja_Resultados" EntityType="Self.Hoja_Resultados" />
@@ -423,7 +425,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities3">
+        <EntityContainerMapping StorageEntityContainer="tiusr7pl_proyecto_relampagoModelStoreContainer" CdmEntityContainer="tiusr7pl_proyecto_relampagoEntities">
           <EntitySetMapping Name="Caracteristicas">
             <EntityTypeMapping TypeName="tiusr7pl_proyecto_relampagoModel.Caracteristicas">
               <MappingFragment StoreEntitySet="Caracteristicas">
@@ -470,6 +472,7 @@
               <MappingFragment StoreEntitySet="Pestel">
                 <ScalarProperty Name="Id_factor" ColumnName="Id_factor" />
                 <ScalarProperty Name="Id_pestel" ColumnName="Id_pestel" />
+                <ScalarProperty Name="tipoFactor" ColumnName="tipoFactor" />
                 <ScalarProperty Name="clasificacion_factor" ColumnName="clasificacion_factor" />
                 <ScalarProperty Name="Politico" ColumnName="Politico" />
                 <ScalarProperty Name="Economico" ColumnName="Economico" />

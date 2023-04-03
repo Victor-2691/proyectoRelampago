@@ -24,7 +24,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     Caracteristicas new_caracteristica = new Caracteristicas();
                     new_caracteristica.caracteristica = carac;
@@ -47,7 +47,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     var caracteristicas = from c in db.Caracteristicas
                                           where c.Id_hoja_resultados == idHojaResultado
@@ -76,7 +76,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     Caracteristicas new_caracteristica = new Caracteristicas();
                     new_caracteristica.Id_caracteristica = id;
@@ -96,7 +96,7 @@ namespace Capa_Negocios
         {
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     Caracteristicas new_caracteristica = new Caracteristicas();
                     new_caracteristica = db.Caracteristicas.Find(id);
