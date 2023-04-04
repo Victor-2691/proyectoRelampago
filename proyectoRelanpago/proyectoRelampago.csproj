@@ -157,6 +157,7 @@
     <Content Include="Paginas\Ideas.aspx" />
     <Content Include="Paginas\pagina_login.aspx" />
     <Content Include="Paginas\Pestel.aspx" />
+    <Content Include="Paginas\Principal.aspx" />
     <Content Include="Paginas\ResumenPestel.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
@@ -280,6 +281,13 @@
     </Compile>
     <Compile Include="Paginas\Pestel.aspx.designer.cs">
       <DependentUpon>Pestel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Principal.aspx.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Principal.aspx.designer.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ResumenPestel.aspx.cs">
       <DependentUpon>ResumenPestel.aspx</DependentUpon>
