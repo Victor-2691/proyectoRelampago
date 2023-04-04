@@ -14,23 +14,23 @@ namespace Capa_Negocios
     public class PestelMethods
     {
 
-        private string _aspectonegativo;
-        private string _aspectopositivo;
-        private bool _politico = false;
-        private bool _economico = false;
-        private bool _social = false;
-        private bool _tecnologico = false;
-        private bool _ecologico = false;
-        private bool _legal = false;
 
-        public string Aspectonegativo { get => _aspectonegativo; set => _aspectonegativo = value; }
-        public string AspectoPositivo { get => _aspectopositivo; set => _aspectopositivo = value; }
-        public bool Politico { get => _politico; set => _politico = value; }
-        public bool Economico { get => _economico; set => _economico = value; }
-        public bool Social { get => _social; set => _social = value; }
-        public bool Tecnologico { get => _tecnologico; set => _tecnologico = value; }
-        public bool Ecologico { get => _ecologico; set => _ecologico = value; }
-        public bool Legal { get => _legal; set => _legal = value; }
+        private string _factor;
+        private int _politico = 2;
+        private int _economico = 2;
+        private int _social = 2;
+        private int _tecnologico = 2;
+        private int _ecologico = 2;
+        private int _legal = 2;
+
+        public string Factor { get => _factor; set => _factor = value; }
+        public int Politico { get => _politico; set => _politico = value; }
+        public int Economico { get => _economico; set => _economico = value; }
+        public int Social { get => _social; set => _social = value; }
+        public int Tecnologico { get => _tecnologico; set => _tecnologico = value; }
+        public int Ecologico { get => _ecologico; set => _ecologico = value; }
+        public int Legal { get => _legal; set => _legal = value; }
+
 
 
         public int guardarPestel(int idFactor, int tipoFactor, int clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion, int idHojaResultado)
@@ -98,70 +98,173 @@ namespace Capa_Negocios
             }
         }
 
-        //public ArrayList verInfoPestel(int hojatrabajo)
-        //{        
-        //    try
-        //    {
-        //        using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
-        //        {
-        //            ArrayList arrayPestel = new ArrayList();
-        //            var query = from f in db.Factores
-        //                        from p in db.Pestel
-        //                        where f.Id_factor == p.Id_factor && p.Id_hoja_resultados == hojatrabajo
-        //                        select new
-        //                        {
-        //                            f.aspectoPositivo,
-        //                            f.aspectoNegativo,
-        //                            p.Politico,
-        //                            p.Economico,
-        //                            p.Social,
-        //                            p.Tecnologico,
-        //                            p.Ecologico,
-        //                            p.Legal
-        //                        };
+        public ArrayList ListarPestel(int hojatrabajo)
+        {
 
-        //            foreach (var sr in query)
-        //            {
-        //                PestelMethods objetoPestel = new PestelMethods();
+            try
+            {
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                {
 
-        //                objetoPestel.Aspectonegativo = sr.aspectoNegativo;
-        //                objetoPestel.AspectoPositivo = sr.aspectoPositivo;
+                    ArrayList arrayPestel = new ArrayList();
+                    var query = from f in db.Factores
+                                from p in db.Pestel
+                                where f.Id_factor == p.Id_factor && p.Id_hoja_resultados == hojatrabajo && p.tipoFactor == true
+                                select new
+                                {
+                                    f.aspectoPositivo,
+                                    p.Politico,
+                                    p.Economico,
+                                    p.Social,
+                                    p.Tecnologico,
+                                    p.Ecologico,
+                                    p.Legal
+                                };
 
-        //                if (sr.Politico == true)
-        //                {
-        //                    objetoPestel.Politico = true;
-        //                }
+                    foreach (var sr in query)
+                    {
+                        PestelMethods objetoPestel = new PestelMethods();
+                        objetoPestel.Factor = sr.aspectoPositivo;
+                        if (sr.Politico == 1)
+                        {
+                            objetoPestel.Politico = 1;
+                        }
 
-        //                if (sr.Economico == true)
-        //                {
-        //                    objetoPestel.Economico = true;
-        //                }
-        //                if (sr.Social == true)
-        //                {
-        //                    objetoPestel.Social = true;
-        //                }
-        //                if (sr.Tecnologico == true)
-        //                {
-        //                    objetoPestel.Tecnologico = true;
-        //                }
-        //                if (sr.Ecologico == true)
-        //                {
-        //                    objetoPestel.Ecologico = true;
-        //                }
-        //                if (sr.Legal == true)
-        //                {
-        //                    objetoPestel.Legal = true;
-        //                }
+                        if (sr.Economico == 1)
+                        {
+                            objetoPestel.Economico = 1;
+                        }
+                        if (sr.Social == 1)
+                        {
+                            objetoPestel.Social = 1;
+                        }
+                        if (sr.Tecnologico == 1)
+                        {
+                            objetoPestel.Tecnologico = 1;
+                        }
+                        if (sr.Ecologico == 1)
+                        {
+                            objetoPestel.Ecologico = 1;
+                        }
+                        if (sr.Legal == 1)
+                        {
+                            objetoPestel.Legal = 1;
+                        }
 
-        //                arrayPestel.Add(objetoPestel);
-        //            }
-        //            return arrayPestel;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+                        if (sr.Politico == 0)
+                        {
+                            objetoPestel.Politico = 0;
+                        }
+
+                        if (sr.Economico == 0)
+                        {
+                            objetoPestel.Economico = 0;
+                        }
+                        if (sr.Social == 0)
+                        {
+                            objetoPestel.Social = 0;
+                        }
+                        if (sr.Tecnologico == 0)
+                        {
+                            objetoPestel.Tecnologico = 0;
+                        }
+                        if (sr.Ecologico == 0)
+                        {
+                            objetoPestel.Ecologico = 0;
+                        }
+                        if (sr.Legal == 0)
+                        {
+                            objetoPestel.Legal = 0;
+                        }
+
+                        arrayPestel.Add(objetoPestel);
+
+                    }
+                    var query2 = from f in db.Factores
+                                 from p in db.Pestel
+                                 where f.Id_factor == p.Id_factor && p.Id_hoja_resultados == hojatrabajo && p.tipoFactor == false
+                                 select new
+                                 {
+                                     f.aspectoNegativo,
+                                     p.Politico,
+                                     p.Economico,
+                                     p.Social,
+                                     p.Tecnologico,
+                                     p.Ecologico,
+                                     p.Legal
+                                 };
+
+                    foreach (var sr in query2)
+                    {
+                        PestelMethods objetoPestel = new PestelMethods();
+
+                        objetoPestel.Factor = sr.aspectoNegativo;
+
+
+                        if (sr.Politico == 1)
+                        {
+                            objetoPestel.Politico = 1;
+                        }
+
+                        if (sr.Economico == 1)
+                        {
+                            objetoPestel.Economico = 1;
+                        }
+                        if (sr.Social == 1)
+                        {
+                            objetoPestel.Social = 1;
+                        }
+                        if (sr.Tecnologico == 1)
+                        {
+                            objetoPestel.Tecnologico = 1;
+                        }
+                        if (sr.Ecologico == 1)
+                        {
+                            objetoPestel.Ecologico = 1;
+                        }
+                        if (sr.Legal == 1)
+                        {
+                            objetoPestel.Legal = 1;
+                        }
+
+                        if (sr.Politico == 0)
+                        {
+                            objetoPestel.Politico = 0;
+                        }
+
+                        if (sr.Economico == 0)
+                        {
+                            objetoPestel.Economico = 0;
+                        }
+                        if (sr.Social == 0)
+                        {
+                            objetoPestel.Social = 0;
+                        }
+                        if (sr.Tecnologico == 0)
+                        {
+                            objetoPestel.Tecnologico = 0;
+                        }
+                        if (sr.Ecologico == 0)
+                        {
+                            objetoPestel.Ecologico = 0;
+                        }
+                        if (sr.Legal == 0)
+                        {
+                            objetoPestel.Legal = 0;
+                        }
+
+                        arrayPestel.Add(objetoPestel);
+                    }
+
+                    return arrayPestel;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
