@@ -69,6 +69,7 @@ th, td {
 
 table {
     margin: auto;
+    min-width: 505px;
     width: 100%;
 }
 

@@ -37,7 +37,7 @@
         </div>
 
         <div class="divBoton">
-            <asp:Button class="botonSiguiente" ID="btnContinuar" runat="server" Text="CONFIRMAR FACTORES" />
+            <asp:Button class="botonSiguiente" ID="btnContinuar" runat="server" Text="CONFIRMAR FACTORES" OnClick="btnContinuar_Click" />
         </div>
     </div>
 
