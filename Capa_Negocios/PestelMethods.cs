@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Capa_Negocios
         public bool Legal { get => _legal; set => _legal = value; }
 
 
-        public int guardarPestel(int idFactor, string clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion, int idHojaResultado)
+        public int guardarPestel(int idFactor, int tipoFactor, int clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion, int idHojaResultado)
         {
             using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
             {
@@ -41,6 +42,7 @@ namespace Capa_Negocios
                     Pestel iPestel = new Pestel
                     {
                         Id_factor = idFactor,
+                        tipoFactor = Convert.ToBoolean(tipoFactor),
                         clasificacion_factor = clasificacion,
                         Politico = politico,
                         Economico = economico,
@@ -55,8 +57,10 @@ namespace Capa_Negocios
                     db.Pestel.Add(iPestel);
                     db.SaveChanges();
 
-                    var query = from i in db.Ideas
-                                select i.Id_idea;
+                    var query = from p in db.Pestel
+                                select p.Id_pestel;
+
+                    return query.Max();
                 }
                 catch (Exception ex)
                 {
@@ -66,95 +70,26 @@ namespace Capa_Negocios
             }
         }
 
-        public ArrayList verInfoPestel(int hojatrabajo)
-        {        
+        public void modificarPestel(int idPestel, int clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion)
+        {
             try
             {
                 using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
-                    ArrayList arrayPestel = new ArrayList();
-                    var query = from f in db.Factores
-                                from p in db.Pestel
-                                where f.Id_factor == p.Id_factor && p.Id_hoja_resultados == hojatrabajo
-                                select new
-                                {
-                                    f.aspectoPositivo,
-                                    f.aspectoNegativo,
-                                    p.Politico,
-                                    p.Economico,
-                                    p.Social,
-                                    p.Tecnologico,
-                                    p.Ecologico,
-                                    p.Legal
-                                };
+                    var objPestel = db.Pestel.Find(idPestel);
 
-                    foreach (var sr in query)
-                    {
-                        PestelMethods objetoPestel = new PestelMethods();
+                    objPestel.clasificacion_factor = clasificacion;
+                    objPestel.Politico = politico;
+                    objPestel.Economico = economico;
+                    objPestel.Social = social;
+                    objPestel.Tecnologico = tecnologico;
+                    objPestel.Ecologico = ecologico;
+                    objPestel.Legal = legal;
+                    objPestel.Comentario = justificacion;
 
-                        objetoPestel.Aspectonegativo = sr.aspectoNegativo;
-                        objetoPestel.AspectoPositivo = sr.aspectoPositivo;
-
-                        if (sr.Politico == true)
-                        {
-                            objetoPestel.Politico = true;
-                        }
-
-                        if (sr.Economico == true)
-                        {
-                            objetoPestel.Economico = true;
-                        }
-                        if (sr.Social == true)
-                        {
-                            objetoPestel.Social = true;
-                        }
-                        if (sr.Tecnologico == true)
-                        {
-                            objetoPestel.Tecnologico = true;
-                        }
-                        if (sr.Ecologico == true)
-                        {
-                            objetoPestel.Ecologico = true;
-                        }
-                        if (sr.Legal == true)
-                        {
-                            objetoPestel.Legal = true;
-                        }
-
-                        arrayPestel.Add(objetoPestel);
-                    }
-                    return arrayPestel;
+                    db.Entry(objPestel).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-
-        }
-
-        public void modificasrInfoPestel(int id, string clasificacion, bool economico, bool politico, bool social, bool tecnologico, bool ecologico, bool legal, string comentario)
-        {
-            try
-            {
-                //using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
-                //{
-                //    Pestel new_pestel = new Pestel();
-                //    new_pestel.Id_pestel = id;
-                //    new_pestel.clasificacion_factor = clasificacion;
-                //    new_pestel.Economico = economico;
-                //    new_pestel.Social = social;
-                //    new_pestel.Tecnologico = tecnologico;
-                //    new_pestel.Ecologico = ecologico;
-                //    new_pestel.Legal = legal;
-                //    new_pestel.Comentario = comentario;
-
-                //    db.Entry(new_pestel).State = System.Data.Entity.EntityState.Modified;
-                //    db.SaveChanges();
-                //}
             }
             catch (Exception ex)
             {
@@ -162,5 +97,71 @@ namespace Capa_Negocios
                 throw new Exception(ex.Message);
             }
         }
+
+        //public ArrayList verInfoPestel(int hojatrabajo)
+        //{        
+        //    try
+        //    {
+        //        using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+        //        {
+        //            ArrayList arrayPestel = new ArrayList();
+        //            var query = from f in db.Factores
+        //                        from p in db.Pestel
+        //                        where f.Id_factor == p.Id_factor && p.Id_hoja_resultados == hojatrabajo
+        //                        select new
+        //                        {
+        //                            f.aspectoPositivo,
+        //                            f.aspectoNegativo,
+        //                            p.Politico,
+        //                            p.Economico,
+        //                            p.Social,
+        //                            p.Tecnologico,
+        //                            p.Ecologico,
+        //                            p.Legal
+        //                        };
+
+        //            foreach (var sr in query)
+        //            {
+        //                PestelMethods objetoPestel = new PestelMethods();
+
+        //                objetoPestel.Aspectonegativo = sr.aspectoNegativo;
+        //                objetoPestel.AspectoPositivo = sr.aspectoPositivo;
+
+        //                if (sr.Politico == true)
+        //                {
+        //                    objetoPestel.Politico = true;
+        //                }
+
+        //                if (sr.Economico == true)
+        //                {
+        //                    objetoPestel.Economico = true;
+        //                }
+        //                if (sr.Social == true)
+        //                {
+        //                    objetoPestel.Social = true;
+        //                }
+        //                if (sr.Tecnologico == true)
+        //                {
+        //                    objetoPestel.Tecnologico = true;
+        //                }
+        //                if (sr.Ecologico == true)
+        //                {
+        //                    objetoPestel.Ecologico = true;
+        //                }
+        //                if (sr.Legal == true)
+        //                {
+        //                    objetoPestel.Legal = true;
+        //                }
+
+        //                arrayPestel.Add(objetoPestel);
+        //            }
+        //            return arrayPestel;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }

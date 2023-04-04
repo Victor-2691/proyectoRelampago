@@ -51,7 +51,7 @@ namespace Capa_Negocios
 
             try
             {
-                using (tiusr7pl_proyecto_relampagoEntities3 db = new tiusr7pl_proyecto_relampagoEntities3())
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
                 {
                     var lst = from d in db.Hoja_Resultados
                               select d;

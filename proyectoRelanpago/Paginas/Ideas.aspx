@@ -19,8 +19,7 @@
         </div>
 
         <div class="divBoton">
-            <input class="botonGuardar" type="button" value="CONFIRMAR IDEAS" onclick="validar();"/>
-            <asp:Button class="botonGuardar" ID="btnContinuar" runat="server" Text="CONFIRMAR IDEAS" />
+            <input class="botonGuardar" type="button" value="CONFIRMAR IDEAS" onclick="validar();"/>           
         </div>
     </div>
 

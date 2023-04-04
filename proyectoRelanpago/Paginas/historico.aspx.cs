@@ -18,8 +18,8 @@ namespace proyectoRelanpago.Paginas
             {
 
 
-                grdHistorico.DataSource = hoconsulta.VerHojasResultado();
-                grdHistorico.DataBind();
+                //grdHistorico.DataSource = hoconsulta.VerHojasResultado();
+                //grdHistorico.DataBind();
              
             }
 
