@@ -19,13 +19,20 @@ namespace proyectoRelanpago.Paginas
                 Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }
             else
-            {
-                if (!Page.IsPostBack)
+            {               
+                if (Session["idHojaResultado"] != null)
                 {
-                    //ingresarFactoresNull();
-                    DataTable dtFactores = consultarFactores();
-                    grdFactores.DataSource = dtFactores;
-                    grdFactores.DataBind();
+                    if (!Page.IsPostBack)
+                    {
+                        ingresarFactoresNull();
+                        DataTable dtFactores = consultarFactores();
+                        grdFactores.DataSource = dtFactores;
+                        grdFactores.DataBind();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
                 }
             }
         }
@@ -68,12 +75,11 @@ namespace proyectoRelanpago.Paginas
         private void ingresarFactoresNull()
         {
             Idea iIdeas = new Idea();
-            //int idHojaResultado = (int)Session["idHojaResultado"];
-            int idHojaResultado = 26;
+            int idHojaResultado = (int)Session["idHojaResultado"];           
             ArrayList ideas = iIdeas.obtenerIdeas(idHojaResultado);
 
             Factor iFactor = new Factor();
-            foreach(Idea idea in ideas)
+            foreach (Idea idea in ideas)
             {
                 iFactor.ingresarFactoresNull(idea.IdIdea, idHojaResultado);
             }
@@ -82,10 +88,15 @@ namespace proyectoRelanpago.Paginas
         private DataTable consultarFactores()
         {
             Factor iFactor = new Factor();
-            int idHojaResultado = 26;
-
+            int idHojaResultado = (int)Session["idHojaResultado"];
+           
             DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
             return dtFactores;
+        }
+
+        protected void btnContinuar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Paginas/Pestel.aspx", false);
         }
     }
 }

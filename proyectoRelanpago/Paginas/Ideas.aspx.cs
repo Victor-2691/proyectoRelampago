@@ -18,7 +18,7 @@ namespace proyectoRelanpago.Paginas
         {
             if (Session["Usuario"] == null)
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx");
+                Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }
             else
             {
@@ -86,7 +86,7 @@ namespace proyectoRelanpago.Paginas
                 }
                 else
                 {
-                    Response.Redirect("~/Paginas/pagina_login.aspx");
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
                 }
             }
         }

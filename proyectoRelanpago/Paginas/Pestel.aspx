@@ -52,9 +52,7 @@
             const id = document.getElementById("IDPestel" + array[idOpc] + idFactor).value;
 
             const modalCerrar = "#Factor" + array[idOpc] + idFactor;
-
-            alert(clasificacion + "," + politico + "," + economico + "," + social + "," + tecnologico + "," + ecologico + "," + legal + "," + justificacion);
-                        
+                                    
             $.ajax({
                 url: "Pestel.aspx/guardarPestel",
                 data: "{idFactor:" + JSON.stringify(idFactor) +

@@ -17,7 +17,7 @@ namespace proyectoRelanpago
             }
             else
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx");
+                Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }            
         }
     }

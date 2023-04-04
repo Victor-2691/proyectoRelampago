@@ -17,13 +17,20 @@ namespace proyectoRelanpago.Paginas
         {
             if (Session["Usuario"] == null)
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx");
+                Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }
             else
             {
-                if (!Page.IsPostBack)
+                if (Session["idHojaResultado"] != null)
                 {
-                    obtenerFactores();
+                    if (!Page.IsPostBack)
+                    {
+                        obtenerFactores();
+                    }
+                }
+                else
+                {
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
                 }
             }
         }
@@ -31,8 +38,7 @@ namespace proyectoRelanpago.Paginas
         private void obtenerFactores()
         {
             Factor iFactor = new Factor();
-            //int idHojaResultado = (int)Session["idHojaResultado"];
-            int idHojaResultado = 26;
+            int idHojaResultado = (int)Session["idHojaResultado"];
             DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
 
             StringBuilder infoFactores = new StringBuilder();
@@ -77,7 +83,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='politicoPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -86,7 +92,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='tecnologicoPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -97,7 +103,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='economicoPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -106,7 +112,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='ecologicoPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");                
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -117,7 +123,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='socialPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");                
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -126,7 +132,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='legalPositivo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");                
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -171,7 +177,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='politicoNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");                
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -180,7 +186,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='tecnologicoNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -191,7 +197,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='economicoNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -200,7 +206,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='ecologicoNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -211,7 +217,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='socialNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");                
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
 
@@ -220,7 +226,7 @@ namespace proyectoRelanpago.Paginas
                 modalFactores.Append("<select class='select' id='legalNegativo" + drFactor["idFactor"] + "'>");
                 modalFactores.Append("<option value='2'>N/A</option>");
                 modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");               
+                modalFactores.Append("<option value='0'>Negativo</option>");
                 modalFactores.Append("</select>");
                 modalFactores.Append("</div>");
                 modalFactores.Append("</div>");
@@ -250,7 +256,7 @@ namespace proyectoRelanpago.Paginas
         [WebMethod]
         public static object guardarPestel(int idFactor, int tipoFactor, int clasificacion, int politico, int economico, int social, int tecnologico, int ecologico, int legal, string justificacion, int idHojaResultado, string idPestel)
         {
-            string idModificar = "";
+            string idModificar;
             PestelMethods iPestel = new PestelMethods();
 
             if (idPestel.Trim().Equals(""))
@@ -260,9 +266,9 @@ namespace proyectoRelanpago.Paginas
             }
             else
             {
-                iPestel.modificarPestel(int.Parse(idPestel),clasificacion, politico, economico, social, tecnologico, ecologico, legal, justificacion);
+                iPestel.modificarPestel(int.Parse(idPestel), clasificacion, politico, economico, social, tecnologico, ecologico, legal, justificacion);
                 idModificar = idPestel;
-            }           
+            }
             return new { success = true, id = idModificar };
         }
 
