@@ -83,11 +83,18 @@
 .botonGuardar {
     background-color: #ffff;
     font-family: Roboto;
-    border-width: 1px;
-    border-color: #22A2CE;
-    width: 170px;
-    height: 45px;
-    max-width: 400px;
+    font-size: 14px;
+    background-color: #285e55;
+    border: none;
+    border-radius: 10px;
+    width: 45%;
+    color: white;
+    padding: 1rem;
+}
+
+    .botonGuardar:hover {
+        color: black;
+        cursor: pointer;
 }
 
 .boton {
