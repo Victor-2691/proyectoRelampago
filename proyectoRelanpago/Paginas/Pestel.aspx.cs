@@ -15,9 +15,16 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["Usuario"] == null)
             {
-                obtenerFactores();
+                Response.Redirect("~/Paginas/pagina_login.aspx");
+            }
+            else
+            {
+                if (!Page.IsPostBack)
+                {
+                    obtenerFactores();
+                }
             }
         }
 
