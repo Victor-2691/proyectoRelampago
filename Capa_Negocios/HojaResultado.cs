@@ -55,7 +55,8 @@ namespace Capa_Negocios
                 {
                     var lst = from d in db.Hoja_Resultados
                               orderby d.Fecha_registro descending
-                              select d;
+                              where d.estado == true
+                              select d ;
                     dt = ConvertirListaToDataTable(lst.ToList());
                 }
             }
