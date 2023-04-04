@@ -14,7 +14,7 @@ namespace proyectoRelanpago.Paginas
 			try
 			{
                 Session["Usuario"] = null;
-                Response.Redirect("~/Paginas/pagina_login.aspx");
+                Response.Redirect("~/Paginas/pagina_login.aspx",false);
              
 
             }

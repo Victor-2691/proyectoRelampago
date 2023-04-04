@@ -49,6 +49,7 @@ namespace proyectoRelanpago.Paginas
                     int index = int.Parse(e.CommandArgument.ToString());
                     GridViewRow fila = grdHistorico.Rows[index];
                     idhoja = fila.Cells[0].Text;
+                    Response.Redirect("~/Paginas/ResumenHistorico.aspx?idhoja="+ idhoja, false);
 
                 }
 

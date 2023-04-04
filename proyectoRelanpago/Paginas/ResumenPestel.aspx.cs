@@ -113,7 +113,7 @@ namespace proyectoRelanpago.Paginas
 
         protected void btnRedirigir_Click(object sender, EventArgs e)
         {
-            
+            Response.Redirect("~/Paginas/Principal.aspx?", false);
 
         }
     }

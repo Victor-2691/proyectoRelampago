@@ -5,7 +5,7 @@
         
         <div class="historico_resumen" >
             <div class="divTitulo">
-                  <h1>Historicos</h1>
+                  <h1>Históricos</h1>
             </div>    
           
 

@@ -16,10 +16,13 @@ namespace proyectoRelanpago.Paginas
         public PestelMethods nuevoresumen = new PestelMethods();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //int idHojaResultado = (int)Session["idHojaResultado"];
+
+            string idhojastring = Request.QueryString["idhoja"];
+            int idhoja = int.Parse(idhojastring);
+            
             _ = new ArrayList();
 
-            ArrayList factorespositivos = nuevoresumen.ListarPestel(26);
+            ArrayList factorespositivos = nuevoresumen.ListarPestel(idhoja);
             StringBuilder politico = new StringBuilder();
             StringBuilder economico = new StringBuilder();
             StringBuilder social = new StringBuilder();
@@ -115,7 +118,7 @@ namespace proyectoRelanpago.Paginas
 
         protected void btnRedirigir_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Paginas/historico.aspx?", false);
         }
     }
 }
