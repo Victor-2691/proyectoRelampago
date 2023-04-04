@@ -53,7 +53,7 @@
           </Key>
           <Property Name="Id_idea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_caracteristica" Type="int" Nullable="false" />
-          <Property Name="idea" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="idea" Type="varchar" MaxLength="120" Nullable="false" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Pestel">
@@ -399,7 +399,7 @@
           </Key>
           <Property Name="Id_idea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_caracteristica" Type="Int32" Nullable="false" />
-          <Property Name="idea" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idea" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Caracteristicas" Relationship="Self.FK_Ideas_Caracteristicas" FromRole="Ideas" ToRole="Caracteristicas" />
           <NavigationProperty Name="Factores" Relationship="Self.FK_Factores_Ideas" FromRole="Ideas" ToRole="Factores" />

@@ -95,7 +95,7 @@ namespace proyectoRelanpago.Paginas
             catch (Exception ex)
             {
                 Session["Error"] = ex;
-                Response.Redirect("~/Paginas/Error", false);               
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
 
@@ -112,14 +112,17 @@ namespace proyectoRelanpago.Paginas
             {
                 for (int i = 0; i < arrayIdeas.Length; i++)
                 {
-                    int id = idea.guardarIdea(idCaracteristica, arrayIdeas[i], idHojaResultado);
-                    if (i != arrayIdeas.Length - 1)
+                    if (!arrayIdeas[i].Trim().Equals(""))
                     {
-                        idsModificar += id.ToString() + ",";
-                    }
-                    else
-                    {
-                        idsModificar += id.ToString();
+                        int id = idea.guardarIdea(idCaracteristica, arrayIdeas[i], idHojaResultado);
+                        if (i != arrayIdeas.Length - 1)
+                        {
+                            idsModificar += id.ToString() + ",";
+                        }
+                        else
+                        {
+                            idsModificar += id.ToString();
+                        }
                     }
                 }
             }
@@ -127,7 +130,10 @@ namespace proyectoRelanpago.Paginas
             {
                 for (int i = 0; i < arrayidsModificar.Length; i++)
                 {
-                    idea.modificarIdea(int.Parse(arrayidsModificar[i]), arrayIdeas[i]);
+                    if (!arrayidsModificar[i].Trim().Equals(""))
+                    {
+                        idea.modificarIdea(int.Parse(arrayidsModificar[i]), arrayIdeas[i]);
+                    }                   
                 }
                 idsModificar = idsRaw;
             }
