@@ -16,9 +16,17 @@ namespace proyectoRelanpago.Paginas
         public Capa_Negocios.HojaResultado hoja = new Capa_Negocios.HojaResultado();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            try
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx", false);
+                if (Session["Usuario"] == null)
+                {
+                    Response.Redirect("~/Paginas/pagina_login.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
 
@@ -29,8 +37,7 @@ namespace proyectoRelanpago.Paginas
                 if (txtCarac1.Text.Trim() == "" || txtCarac2.Text.Trim() == ""
               || txtCarac3.Text.Trim() == "" || txtCarac4.Text.Trim() == "" || txtCarac5.Text.Trim() == "")
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(),
-                                   "alert", "alert('" + "La cantidad minima de caracteristicas debe ser de 5" + "')", true);
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "toast", $"Alerta('La cantidad mínima de características debe ser de 5')", true);
                 }
                 else
                 {
@@ -68,10 +75,8 @@ namespace proyectoRelanpago.Paginas
             }
             catch (Exception ex)
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(),
-                                        "alert",
-                           "alert('" + ex.Message + "')", true);
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
     }

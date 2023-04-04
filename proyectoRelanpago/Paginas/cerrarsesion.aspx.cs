@@ -14,20 +14,14 @@ namespace proyectoRelanpago.Paginas
 			try
 			{
                 Session["Usuario"] = null;
-                Response.Redirect("~/Paginas/pagina_login.aspx",false);
-             
-
+                Session["idHojaResultado"] = null;
+                Response.Redirect("~/Paginas/pagina_login.aspx",false);             
             }
 			catch (Exception ex)
 			{
-
-
-                ScriptManager.RegisterStartupScript(this, GetType(),
-   "alert",
-   "alert('" + ex.Message + "')", true);
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
-
-
         }
     }
 }

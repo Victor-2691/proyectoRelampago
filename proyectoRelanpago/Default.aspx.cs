@@ -11,14 +11,22 @@ namespace proyectoRelanpago
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] != null)
+            try
             {
-                Response.Redirect("~/Paginas/Principal.aspx", false);
+                if (Session["Usuario"] != null)
+                {
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
+                }
+                else
+                {
+                    Response.Redirect("~/Paginas/pagina_login.aspx", false);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx", false);
-            }            
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);               
+            }          
         }
     }
 }

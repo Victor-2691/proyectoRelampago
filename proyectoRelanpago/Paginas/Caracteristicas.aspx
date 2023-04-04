@@ -2,7 +2,32 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
+    <link href="../Estilos/toastr.min.css" rel="stylesheet" />
     <link href="../Estilos/Caracteristicas.css" rel="stylesheet" />
+    <script src="../Scripts/toastr.min.js"></script>
+
+    <script type="text/javascript">
+        function Alerta(mensaje) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-full-width",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "2000",
+                "hideDuration": "4000",
+                "timeOut": "5000",
+                "extendedTimeOut": "3000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["warning"](mensaje, "Información")
+        }
+    </script>
 
     <div class="cont">
         <div class="divParrafoEx">
@@ -64,9 +89,9 @@
         </div>
 
         <div class="divBoton">
-              <asp:Button OnClick="btnGuardar_Click"
-                class="botonGuardar" ID="btnGuardar" runat="server" Text="CONFIRMAR CARACTERÍSTICAS"   />
-        </div>        
+            <asp:Button OnClick="btnGuardar_Click"
+                class="botonGuardar" ID="btnGuardar" runat="server" Text="CONFIRMAR CARACTERÍSTICAS" />
+        </div>
     </div>
 
 </asp:Content>

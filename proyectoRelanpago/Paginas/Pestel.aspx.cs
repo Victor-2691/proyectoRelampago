@@ -15,242 +15,258 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            try
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx", false);
-            }
-            else
-            {
-                if (Session["idHojaResultado"] != null)
+                if (Session["Usuario"] == null)
                 {
-                    if (!Page.IsPostBack)
-                    {
-                        obtenerFactores();
-                    }
+                    Response.Redirect("~/Paginas/pagina_login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/Paginas/Principal.aspx", false);
+                    if (Session["idHojaResultado"] != null)
+                    {
+                        if (!Page.IsPostBack)
+                        {
+                            obtenerFactores();
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Paginas/Principal.aspx", false);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);               
             }
         }
 
         private void obtenerFactores()
         {
-            Factor iFactor = new Factor();
-            int idHojaResultado = (int)Session["idHojaResultado"];
-            DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
-
-            StringBuilder infoFactores = new StringBuilder();
-            StringBuilder modalFactores = new StringBuilder();
-            foreach (DataRow drFactor in dtFactores.Rows)
+            try
             {
-                infoFactores.Append("<tr>");
-                infoFactores.Append("<td>" + drFactor["AspectoPositivo"] + "</td>");
-                infoFactores.Append("<td>");
-                infoFactores.Append("<button class='botonModal' type='button' data-toggle='modal' data-target='#FactorPositivo" + drFactor["idFactor"] + "'>");
-                infoFactores.Append("<img class='imgPestel' src='../Recursos/signoMas_32.png' alt=''></button>");
-                infoFactores.Append("</td>");
-                infoFactores.Append("</tr>");
+                Factor iFactor = new Factor();
+                int idHojaResultado = (int)Session["idHojaResultado"];
+                DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
 
-                infoFactores.Append("<tr>");
-                infoFactores.Append("<td>" + drFactor["AspectoNegativo"] + "</td>");
-                infoFactores.Append("<td>");
-                infoFactores.Append("<button class='botonModal' type='button' data-toggle='modal' data-target='#FactorNegativo" + drFactor["idFactor"] + "'>");
-                infoFactores.Append("<img class='imgPestel' src='../Recursos/signoMas_32.png' alt=''></button>");
-                infoFactores.Append("</td>");
-                infoFactores.Append("</tr>");
+                StringBuilder infoFactores = new StringBuilder();
+                StringBuilder modalFactores = new StringBuilder();
+                foreach (DataRow drFactor in dtFactores.Rows)
+                {
+                    infoFactores.Append("<tr>");
+                    infoFactores.Append("<td>" + drFactor["AspectoPositivo"] + "</td>");
+                    infoFactores.Append("<td>");
+                    infoFactores.Append("<button class='botonModal' type='button' data-toggle='modal' data-target='#FactorPositivo" + drFactor["idFactor"] + "'>");
+                    infoFactores.Append("<img class='imgPestel' src='../Recursos/signoMas_32.png' alt=''></button>");
+                    infoFactores.Append("</td>");
+                    infoFactores.Append("</tr>");
 
-                // Modal Factor Positivo
-                modalFactores.Append("<div class='modal fade' id='FactorPositivo" + drFactor["idFactor"] + "' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>");
-                modalFactores.Append("<div class='modal-dialog' role='document'>");
-                modalFactores.Append("<div class='modal-content' style='background-color: #9dbab5'>");
-                modalFactores.Append("<div class='modal-body'>");
+                    infoFactores.Append("<tr>");
+                    infoFactores.Append("<td>" + drFactor["AspectoNegativo"] + "</td>");
+                    infoFactores.Append("<td>");
+                    infoFactores.Append("<button class='botonModal' type='button' data-toggle='modal' data-target='#FactorNegativo" + drFactor["idFactor"] + "'>");
+                    infoFactores.Append("<img class='imgPestel' src='../Recursos/signoMas_32.png' alt=''></button>");
+                    infoFactores.Append("</td>");
+                    infoFactores.Append("</tr>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='clasificacion'>Clasificación</label>");
-                modalFactores.Append("<select class='select' id='clasificacionPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='1'>Interno</option>");
-                modalFactores.Append("<option value='2'>Externo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    // Modal Factor Positivo
+                    modalFactores.Append("<div class='modal fade' id='FactorPositivo" + drFactor["idFactor"] + "' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>");
+                    modalFactores.Append("<div class='modal-dialog' role='document'>");
+                    modalFactores.Append("<div class='modal-content' style='background-color: #9dbab5'>");
+                    modalFactores.Append("<div class='modal-body'>");
 
-                modalFactores.Append("<div class='divPestel'>");
-                modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='clasificacion'>Clasificación</label>");
+                    modalFactores.Append("<select class='select' id='clasificacionPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='1'>Interno</option>");
+                    modalFactores.Append("<option value='2'>Externo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='politico'>Político</label>");
-                modalFactores.Append("<select class='select' id='politicoPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divPestel'>");
+                    modalFactores.Append("<div class='divParte'>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='tecnologico'>Tecnológico</label>");
-                modalFactores.Append("<select class='select' id='tecnologicoPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='politico'>Político</label>");
+                    modalFactores.Append("<select class='select' id='politicoPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divParte'>");
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='economico'>Económico</label>");
-                modalFactores.Append("<select class='select' id='economicoPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='tecnologico'>Tecnológico</label>");
+                    modalFactores.Append("<select class='select' id='tecnologicoPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='ecologico'>Ecológico</label>");
-                modalFactores.Append("<select class='select' id='ecologicoPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='economico'>Económico</label>");
+                    modalFactores.Append("<select class='select' id='economicoPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divParte'>");
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='social'>Social</label>");
-                modalFactores.Append("<select class='select' id='socialPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='ecologico'>Ecológico</label>");
+                    modalFactores.Append("<select class='select' id='ecologicoPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='legal'>Legal</label>");
-                modalFactores.Append("<select class='select' id='legalPositivo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='social'>Social</label>");
+                    modalFactores.Append("<select class='select' id='socialPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='legal'>Legal</label>");
+                    modalFactores.Append("<select class='select' id='legalPositivo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label'>Justificar clasificación (opcional)</label>");
-                modalFactores.Append("<textarea class='comentario' id='comentarioFactorPositivo" + drFactor["idFactor"] + "'></textarea>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divBotonGuardar'>");
-                modalFactores.Append("<input class='botonGuardar' type='button' id='btnGuardar' value='GUARDAR' onclick='guardar(\"" + drFactor["idFactor"] + "\", \"" + idHojaResultado + "\", 1 )'>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label'>Justificar clasificación (opcional)</label>");
+                    modalFactores.Append("<textarea class='comentario' id='comentarioFactorPositivo" + drFactor["idFactor"] + "'></textarea>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<input type='hidden' id='IDPestelPositivo" + drFactor["idFactor"] + "' value=''>");
+                    modalFactores.Append("<div class='divBotonGuardar'>");
+                    modalFactores.Append("<input class='botonGuardar' type='button' id='btnGuardar' value='GUARDAR' onclick='guardar(\"" + drFactor["idFactor"] + "\", \"" + idHojaResultado + "\", 1 )'>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<input type='hidden' id='IDPestelPositivo" + drFactor["idFactor"] + "' value=''>");
 
-                // Modal Factor Negativo
-                modalFactores.Append("<div class='modal fade' id='FactorNegativo" + drFactor["idFactor"] + "' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>");
-                modalFactores.Append("<div class='modal-dialog' role='document'>");
-                modalFactores.Append("<div class='modal-content' style='background-color: #9dbab5'>");
-                modalFactores.Append("<div class='modal-body'>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='clasificacion'>Clasificación</label>");
-                modalFactores.Append("<select class='select' id='clasificacionNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='1'>Interno</option>");
-                modalFactores.Append("<option value='2'>Externo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    // Modal Factor Negativo
+                    modalFactores.Append("<div class='modal fade' id='FactorNegativo" + drFactor["idFactor"] + "' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>");
+                    modalFactores.Append("<div class='modal-dialog' role='document'>");
+                    modalFactores.Append("<div class='modal-content' style='background-color: #9dbab5'>");
+                    modalFactores.Append("<div class='modal-body'>");
 
-                modalFactores.Append("<div class='divPestel'>");
-                modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='clasificacion'>Clasificación</label>");
+                    modalFactores.Append("<select class='select' id='clasificacionNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='1'>Interno</option>");
+                    modalFactores.Append("<option value='2'>Externo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='politico'>Político</label>");
-                modalFactores.Append("<select class='select' id='politicoNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divPestel'>");
+                    modalFactores.Append("<div class='divParte'>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='tecnologico'>Tecnológico</label>");
-                modalFactores.Append("<select class='select' id='tecnologicoNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='politico'>Político</label>");
+                    modalFactores.Append("<select class='select' id='politicoNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divParte'>");
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='economico'>Económico</label>");
-                modalFactores.Append("<select class='select' id='economicoNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='tecnologico'>Tecnológico</label>");
+                    modalFactores.Append("<select class='select' id='tecnologicoNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='ecologico'>Ecológico</label>");
-                modalFactores.Append("<select class='select' id='ecologicoNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='economico'>Económico</label>");
+                    modalFactores.Append("<select class='select' id='economicoNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divParte'>");
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='social'>Social</label>");
-                modalFactores.Append("<select class='select' id='socialNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='ecologico'>Ecológico</label>");
+                    modalFactores.Append("<select class='select' id='ecologicoNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label' for='legal'>Legal</label>");
-                modalFactores.Append("<select class='select' id='legalNegativo" + drFactor["idFactor"] + "'>");
-                modalFactores.Append("<option value='2'>N/A</option>");
-                modalFactores.Append("<option value='1'>Positivo</option>");
-                modalFactores.Append("<option value='0'>Negativo</option>");
-                modalFactores.Append("</select>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divParte'>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='social'>Social</label>");
+                    modalFactores.Append("<select class='select' id='socialNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label' for='legal'>Legal</label>");
+                    modalFactores.Append("<select class='select' id='legalNegativo" + drFactor["idFactor"] + "'>");
+                    modalFactores.Append("<option value='2'>N/A</option>");
+                    modalFactores.Append("<option value='1'>Positivo</option>");
+                    modalFactores.Append("<option value='0'>Negativo</option>");
+                    modalFactores.Append("</select>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divClasificacion'>");
-                modalFactores.Append("<label class='label'>Justificar clasificación (opcional)</label>");
-                modalFactores.Append("<textarea class='comentario' id='comentarioFactorNegativo" + drFactor["idFactor"] + "'></textarea>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<div class='divBotonGuardar'>");
-                modalFactores.Append("<input class='botonGuardar' type='button' id='btnGuardar' value='GUARDAR' onclick='guardar(\"" + drFactor["idFactor"] + "\", \"" + idHojaResultado + "\", 0 )'>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<div class='divClasificacion'>");
+                    modalFactores.Append("<label class='label'>Justificar clasificación (opcional)</label>");
+                    modalFactores.Append("<textarea class='comentario' id='comentarioFactorNegativo" + drFactor["idFactor"] + "'></textarea>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("<input type='hidden' id='IDPestelNegativo" + drFactor["idFactor"] + "' value=''>");
+                    modalFactores.Append("<div class='divBotonGuardar'>");
+                    modalFactores.Append("<input class='botonGuardar' type='button' id='btnGuardar' value='GUARDAR' onclick='guardar(\"" + drFactor["idFactor"] + "\", \"" + idHojaResultado + "\", 0 )'>");
+                    modalFactores.Append("</div>");
 
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
-                modalFactores.Append("</div>");
+                    modalFactores.Append("<input type='hidden' id='IDPestelNegativo" + drFactor["idFactor"] + "' value=''>");
+
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
+                    modalFactores.Append("</div>");
+                }
+                this.factores.InnerHtml = infoFactores.ToString();
+                this.divModals.InnerHtml = modalFactores.ToString();
             }
-            this.factores.InnerHtml = infoFactores.ToString();
-            this.divModals.InnerHtml = modalFactores.ToString();
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);                
+            }
         }
 
         [WebMethod]

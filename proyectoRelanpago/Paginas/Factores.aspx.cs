@@ -14,89 +14,146 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            try
             {
-                Response.Redirect("~/Paginas/pagina_login.aspx", false);
-            }
-            else
-            {               
-                if (Session["idHojaResultado"] != null)
+                if (Session["Usuario"] == null)
                 {
-                    if (!Page.IsPostBack)
-                    {
-                        ingresarFactoresNull();
-                        DataTable dtFactores = consultarFactores();
-                        grdFactores.DataSource = dtFactores;
-                        grdFactores.DataBind();
-                    }
+                    Response.Redirect("~/Paginas/pagina_login.aspx", false);
                 }
                 else
                 {
-                    Response.Redirect("~/Paginas/Principal.aspx", false);
+                    if (Session["idHojaResultado"] != null)
+                    {
+                        if (!Page.IsPostBack)
+                        {
+                            ingresarFactoresNull();
+                            DataTable dtFactores = consultarFactores();
+                            grdFactores.DataSource = dtFactores;
+                            grdFactores.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("~/Paginas/Principal.aspx", false);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
 
         protected void grdFactores_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            grdFactores.EditIndex = e.NewEditIndex;
+            try
+            {
+                grdFactores.EditIndex = e.NewEditIndex;
 
-            DataTable dtFactores = consultarFactores();
-            grdFactores.DataSource = dtFactores;
-            grdFactores.DataBind();
+                DataTable dtFactores = consultarFactores();
+                grdFactores.DataSource = dtFactores;
+                grdFactores.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
+            }
         }
 
         protected void grdFactores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            int idFactor = Convert.ToInt32(grdFactores.DataKeys[e.RowIndex].Value.ToString());
+            try
+            {
+                int idFactor = Convert.ToInt32(grdFactores.DataKeys[e.RowIndex].Value.ToString());
 
-            string aspectoPositivo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
-            string aspectoNegativo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
+                string aspectoPositivo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[3].Controls[0]).Text;
+                string aspectoNegativo = ((TextBox)grdFactores.Rows[e.RowIndex].Cells[4].Controls[0]).Text;
 
-            Factor iFactor = new Factor();
-            iFactor.modificarFactor(idFactor, aspectoPositivo, aspectoNegativo);
+                Factor iFactor = new Factor();
+                iFactor.modificarFactor(idFactor, aspectoPositivo, aspectoNegativo);
 
-            grdFactores.EditIndex = -1;
+                grdFactores.EditIndex = -1;
 
-            DataTable dtFactores = consultarFactores();
-            grdFactores.DataSource = dtFactores;
-            grdFactores.DataBind();
+                DataTable dtFactores = consultarFactores();
+                grdFactores.DataSource = dtFactores;
+                grdFactores.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
+            }
         }
 
         protected void grdFactores_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            grdFactores.EditIndex = -1;
+            try
+            {
+                grdFactores.EditIndex = -1;
 
-            DataTable dtFactores = consultarFactores();
-            grdFactores.DataSource = dtFactores;
-            grdFactores.DataBind();
+                DataTable dtFactores = consultarFactores();
+                grdFactores.DataSource = dtFactores;
+                grdFactores.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
+            }
         }
 
         private void ingresarFactoresNull()
         {
-            Idea iIdeas = new Idea();
-            int idHojaResultado = (int)Session["idHojaResultado"];           
-            ArrayList ideas = iIdeas.obtenerIdeas(idHojaResultado);
-
-            Factor iFactor = new Factor();
-            foreach (Idea idea in ideas)
+            try
             {
-                iFactor.ingresarFactoresNull(idea.IdIdea, idHojaResultado);
+                Idea iIdeas = new Idea();
+                int idHojaResultado = (int)Session["idHojaResultado"];
+                ArrayList ideas = iIdeas.obtenerIdeas(idHojaResultado);
+
+                Factor iFactor = new Factor();
+                foreach (Idea idea in ideas)
+                {
+                    iFactor.ingresarFactoresNull(idea.IdIdea, idHojaResultado);
+                }
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
 
         private DataTable consultarFactores()
         {
-            Factor iFactor = new Factor();
-            int idHojaResultado = (int)Session["idHojaResultado"];
-           
-            DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
-            return dtFactores;
+            try
+            {
+                Factor iFactor = new Factor();
+                int idHojaResultado = (int)Session["idHojaResultado"];
+
+                DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
+                return dtFactores;
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
+                return null;
+            }
         }
 
         protected void btnContinuar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/Pestel.aspx", false);
+            try
+            {
+                Response.Redirect("~/Paginas/Pestel.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
+            }
         }
     }
 }

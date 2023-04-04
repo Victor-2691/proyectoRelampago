@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Capa_Negocios;
 
 namespace proyectoRelanpago.Paginas
 {
@@ -13,15 +12,23 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] != null)
+            try
             {
-                Response.Redirect("~/Paginas/Principal.aspx", false);
+                if (Session["Usuario"] != null)
+                {
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
+                }
+                else
+                {
+                    txt_usuario.Attributes.Add("placeholder", "Usuario");
+                    txt_contra.Attributes.Add("placeholder", "Contraseña");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                txt_usuario.Attributes.Add("placeholder", "Usuario");
-                txt_contra.Attributes.Add("placeholder", "Contraseña");
-            }            
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);               
+            }          
         }
 
         protected void btn_login_Click(object sender, EventArgs e)
@@ -38,22 +45,13 @@ namespace proyectoRelanpago.Paginas
                 else
                 {
                     Session["Usuario"] = null;
-                    ScriptManager.RegisterStartupScript(this, GetType(),
-                                  "alert", "alert('" + "Usuario o contraseña incorrectos" + "')", true);
-
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert",
-                   "Swal.fire('Good job!','You clicked the button!','success')", true);
-
+                    ScriptManager.RegisterStartupScript(this, typeof(Page), "toast", $"Alerta('Usuario y/o contraseña incorrectos')", true);
                 }
-
             }
             catch (Exception ex)
             {
-
-                ScriptManager.RegisterStartupScript(this, GetType(),
-   "alert",
-   "alert('" + ex.Message + "')", true);
+                Session["Error"] = ex;
+                Response.Redirect("~/Paginas/Error", false);
             }
         }
     }

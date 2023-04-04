@@ -119,8 +119,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="About.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -152,6 +150,7 @@
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Paginas\Caracteristicas.aspx" />
     <Content Include="Paginas\cerrarsesion.aspx" />
+    <Content Include="Paginas\Error.aspx" />
     <Content Include="Paginas\Factores.aspx" />
     <Content Include="Paginas\historico.aspx" />
     <Content Include="Paginas\Ideas.aspx" />
@@ -209,21 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="About.aspx.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="About.aspx.designer.cs">
-      <DependentUpon>About.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +232,13 @@
     </Compile>
     <Compile Include="Paginas\cerrarsesion.aspx.designer.cs">
       <DependentUpon>cerrarsesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\Factores.aspx.cs">
       <DependentUpon>Factores.aspx</DependentUpon>
