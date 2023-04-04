@@ -34,8 +34,8 @@
           </Key>
           <Property Name="Id_factor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_idea" Type="int" Nullable="false" />
-          <Property Name="aspectoPositivo" Type="varchar" MaxLength="60" />
-          <Property Name="aspectoNegativo" Type="varchar" MaxLength="60" />
+          <Property Name="aspectoPositivo" Type="varchar" MaxLength="80" />
+          <Property Name="aspectoNegativo" Type="varchar" MaxLength="80" />
           <Property Name="Id_hoja_resultados" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Hoja_Resultados">
@@ -373,8 +373,8 @@
           </Key>
           <Property Name="Id_factor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Id_idea" Type="Int32" Nullable="false" />
-          <Property Name="aspectoPositivo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="aspectoNegativo" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="aspectoPositivo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="aspectoNegativo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hoja_Resultados" Relationship="Self.FK_Factores_Hoja_Resultados" FromRole="Factores" ToRole="Hoja_Resultados" />
           <NavigationProperty Name="Ideas" Relationship="Self.FK_Factores_Ideas" FromRole="Factores" ToRole="Ideas" />
