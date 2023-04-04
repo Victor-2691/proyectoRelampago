@@ -15,74 +15,99 @@ namespace proyectoRelanpago.Paginas
         public PestelMethods nuevoresumen = new PestelMethods();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_ = new ArrayList();
+            //int idHojaResultado = (int)Session["idHojaResultado"];
+            _ = new ArrayList();
 
-            //ArrayList resumen = nuevoresumen.verInfoPestel(26);
-            //StringBuilder positivo = new StringBuilder();
-            //StringBuilder negativo = new StringBuilder();
+            ArrayList factorespositivos = nuevoresumen.ListarPestel(26);
+            StringBuilder politico = new StringBuilder();
+            StringBuilder economico = new StringBuilder();
+            StringBuilder social = new StringBuilder();
+            StringBuilder tecnologico = new StringBuilder();
+            StringBuilder ecologico = new StringBuilder();
+            StringBuilder legal = new StringBuilder();
+            foreach (PestelMethods carac in factorespositivos)
+            {
+                if (carac.Politico == 1)
+                {
+
+                    politico.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+                }
+
+                if (carac.Economico == 1)
+                {
+
+                    economico.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+
+                }
+
+                if (carac.Social == 1)
+                {
+                    social.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+                }
+
+                if (carac.Tecnologico == 1)
+                {
+
+                    tecnologico.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+                }
+
+                if (carac.Ecologico == 1)
+                {
+
+                    ecologico.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+                }
+
+                if (carac.Legal == 1)
+                {
+                    legal.Append("<li class='factores'>" + carac.Factor + " (+) " + "</li>");
+                }
+
+                if (carac.Politico == 0)
+                {
+
+                    politico.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+                }
+
+                if (carac.Economico == 0)
+                {
+
+                    economico.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+
+                }
+
+                if (carac.Social == 0)
+                {
+                    social.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+                }
+
+                if (carac.Tecnologico == 0)
+                {
+
+                    tecnologico.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+                }
+
+                if (carac.Ecologico == 0)
+                {
+
+                    ecologico.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+                }
+
+                if (carac.Legal == 0)
+                {
+                    legal.Append("<li class='factores'>" + carac.Factor + " (-) " + "</li>");
+                }
 
 
-            //foreach (PestelMethods carac in resumen)
-            //{
-               
-      
-            //    if (carac.Politico == true)
-            //    {
-          
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo +  "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-            //        this.divpolitico.InnerHtml = negativo.ToString();
-            //        this.divpolitico.InnerHtml = positivo.ToString();
-            //    }
 
-            //    if (carac.Economico == true)
-            //    {
-            
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo + "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-             
-            //    }
+            }
+            this.divpolitico.InnerHtml = politico.ToString();
+            this.diveconomico.InnerHtml = economico.ToString();
+            this.divsociales.InnerHtml = social.ToString();
+            this.divtecnologicos.InnerHtml = tecnologico.ToString();
+            this.divecologicos.InnerHtml = ecologico.ToString();
+            this.divlegales.InnerHtml = legal.ToString();
 
-            //    if (carac.Social == true)
-            //    {
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo + "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-            //        this.divsociales.InnerHtml = negativo.ToString();
-            //        this.divsociales.InnerHtml = positivo.ToString();
-            //    }
 
-            //    if (carac.Tecnologico == true)
-            //    {
-                 
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo + "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-            //        this.divtecnologicos.InnerHtml = negativo.ToString();
-            //        this.divtecnologicos.InnerHtml = positivo.ToString();
-            //    }
-
-            //    if (carac.Ecologico == true)
-            //    {
-              
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo + "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-            //        this.divecologicos.InnerHtml = negativo.ToString();
-            //        this.divecologicos.InnerHtml = positivo.ToString();
-            //    }
-
-            //    if (carac.Legal == true)
-            //    {
-                
-            //        negativo.Append("<li class='factores'>" + carac.Aspectonegativo + "</li>");
-            //        positivo.Append("<li class='factores'>" + carac.AspectoPositivo + "</li>");
-            //        this.divlegales.InnerHtml = negativo.ToString();
-            //        this.divlegales.InnerHtml = positivo.ToString();
-            //    }
-          
-            //}
-            //this.divpolitico.InnerHtml = negativoP.ToString();
-            //this.divpolitico.InnerHtml = positivoP.ToString();
-            //this.diveconomico.InnerHtml = negativoE.ToString();
-            //this.diveconomico.InnerHtml = positivoE.ToString();
 
         }
     }

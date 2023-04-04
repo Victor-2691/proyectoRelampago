@@ -17,14 +17,14 @@ namespace proyectoRelanpago.Paginas
             if (!Page.IsPostBack)
             {
 
-
-                //grdHistorico.DataSource = hoconsulta.VerHojasResultado();
-                //grdHistorico.DataBind();
-             
-            }
+                grdHistorico.DataSource = hoconsulta.VerHojasResultado();
+                grdHistorico.DataBind();
 
 
             }
+
+
+        }
 
         protected void grdHistorico_SelectedIndexChanged(object sender, EventArgs e)
         {
