@@ -36,7 +36,7 @@ namespace proyectoRelanpago.Paginas
                 {
                     //*Insertamos la Hoja de trabajo*/
                     string usuario = (string)Session["Usuario"];
-                    DateTime fecha = DateTime.Today;
+                    DateTime fecha = DateTime.Now;
                     bool estado = false;
                     int numerohoja = hoja.agregarhojatrabajo(usuario, fecha, estado);
 

@@ -24,7 +24,10 @@ namespace proyectoRelanpago.Paginas
                 if (Session["idHojaResultado"] != null)
                 {
                     int idHojaResultado = (int)Session["idHojaResultado"];
-                   
+
+                    PestelMethods iPestel = new PestelMethods();
+                    iPestel.cambiarEstado(idHojaResultado);
+
                     ArrayList factorespositivos = nuevoresumen.ListarPestel(idHojaResultado);
                     StringBuilder politico = new StringBuilder();
                     StringBuilder economico = new StringBuilder();
@@ -112,8 +115,7 @@ namespace proyectoRelanpago.Paginas
 
         protected void btnRedirigir_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Paginas/Principal.aspx?", false);
-
+            Response.Redirect("~/Paginas/Principal.aspx", false);
         }
     }
 }

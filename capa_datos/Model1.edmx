@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="tiusr7pl_proyecto_relampagoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="tiusr7pl_proyecto_relampagoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Afecta">
           <Key>
             <PropertyRef Name="idInfluye" />
@@ -44,7 +44,7 @@
           </Key>
           <Property Name="Id_hoja_resultados" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="usuario" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Fecha_registro" Type="date" Nullable="false" />
+          <Property Name="Fecha_registro" Type="datetime" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Ideas">
@@ -330,8 +330,7 @@
             <End Role="Pestel" EntitySet="Pestel" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="tiusr7pl_proyecto_relampagoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -386,7 +385,7 @@
           </Key>
           <Property Name="Id_hoja_resultados" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="usuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Fecha_registro" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Caracteristicas" Relationship="Self.FK_Caracteristicas_Hoja_Resultados" FromRole="Hoja_Resultados" ToRole="Caracteristicas" />
           <NavigationProperty Name="Factores" Relationship="Self.FK_Factores_Hoja_Resultados" FromRole="Hoja_Resultados" ToRole="Factores" />

@@ -266,5 +266,26 @@ namespace Capa_Negocios
                 throw new Exception(ex.Message);
             }
         }
+
+        public void cambiarEstado(int idHojaResultado)
+        {
+            try
+            {
+                using (tiusr7pl_proyecto_relampagoEntities db = new tiusr7pl_proyecto_relampagoEntities())
+                {
+                    var objHojaResultado = db.Hoja_Resultados.Find(idHojaResultado);
+
+                    objHojaResultado.estado = true;
+
+                    db.Entry(objHojaResultado).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
