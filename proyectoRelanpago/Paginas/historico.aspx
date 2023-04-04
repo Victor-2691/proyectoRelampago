@@ -10,7 +10,7 @@
           
 
                    <div class="table-responsive">
-            <asp:GridView ID="grdHistorico" runat="server" BackColor="White" BorderColor="Black" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" DataKeyNames="id_hoja_resultados" OnSelectedIndexChanged="grdHistorico_SelectedIndexChanged"  >
+            <asp:GridView ID="grdHistorico" runat="server" BackColor="White" BorderColor="Black" BorderWidth="1px" ForeColor="Black" GridLines="Horizontal" class="tablaFactores" AutoGenerateColumns="False" DataKeyNames="id_hoja_resultados" OnSelectedIndexChanged="grdHistorico_SelectedIndexChanged" OnRowCommand="grdHistorico_RowCommand1"  >
                 <Columns>
                     
                     <asp:BoundField DataField="id_hoja_resultados" HeaderText="Numero Análisis" ReadOnly="True" />

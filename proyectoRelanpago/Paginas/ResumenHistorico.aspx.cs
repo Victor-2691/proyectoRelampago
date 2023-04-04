@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capa_Negocios;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,11 +7,11 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Capa_Negocios;
+
 
 namespace proyectoRelanpago.Paginas
 {
-    public partial class ResumenPestel : System.Web.UI.Page
+    public partial class ResumenHistorico : System.Web.UI.Page
     {
         public PestelMethods nuevoresumen = new PestelMethods();
         protected void Page_Load(object sender, EventArgs e)
@@ -109,11 +110,11 @@ namespace proyectoRelanpago.Paginas
 
 
 
+
         }
 
         protected void btnRedirigir_Click(object sender, EventArgs e)
         {
-            
 
         }
     }

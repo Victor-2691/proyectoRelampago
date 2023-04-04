@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResumenPestel.aspx.cs" Inherits="proyectoRelanpago.Paginas.ResumenPestel" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResumenHistorico.aspx.cs" Inherits="proyectoRelanpago.Paginas.ResumenHistorico" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <link href="../Estilos/ResumenPestel.css" rel="stylesheet" />
@@ -53,8 +52,11 @@
             </div>
 
         <div class="divBoton">
-            <asp:Button class="botonSiguiente" ID="btnRedirigir" runat="server" Text="PÁGINA PRINCIPAL" OnClick="btnRedirigir_Click" />
+            <asp:Button class="botonSiguiente" ID="btnRedirigir" runat="server" Text="REGRESAR" OnClick="btnRedirigir_Click" />
         </div>
     </div>
+
+
+
 
 </asp:Content>

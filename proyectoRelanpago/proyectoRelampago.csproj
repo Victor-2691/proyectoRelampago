@@ -155,6 +155,7 @@
     <Content Include="Paginas\Ideas.aspx" />
     <Content Include="Paginas\pagina_login.aspx" />
     <Content Include="Paginas\Pestel.aspx" />
+    <Content Include="Paginas\ResumenHistorico.aspx" />
     <Content Include="Paginas\ResumenPestel.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
@@ -277,6 +278,13 @@
     </Compile>
     <Compile Include="Paginas\Pestel.aspx.designer.cs">
       <DependentUpon>Pestel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\ResumenHistorico.aspx.cs">
+      <DependentUpon>ResumenHistorico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\ResumenHistorico.aspx.designer.cs">
+      <DependentUpon>ResumenHistorico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ResumenPestel.aspx.cs">
       <DependentUpon>ResumenPestel.aspx</DependentUpon>
