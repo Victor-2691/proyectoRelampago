@@ -19,14 +19,12 @@ namespace proyectoRelanpago.Paginas
                 Response.Redirect("~/Paginas/pagina_login.aspx", false);
             }
             else
-            {
-                Session["idHojaResultado"] = 41;
-
+            {               
                 if (Session["idHojaResultado"] != null)
                 {
                     if (!Page.IsPostBack)
                     {
-                        //ingresarFactoresNull();
+                        ingresarFactoresNull();
                         DataTable dtFactores = consultarFactores();
                         grdFactores.DataSource = dtFactores;
                         grdFactores.DataBind();
@@ -90,10 +88,8 @@ namespace proyectoRelanpago.Paginas
         private DataTable consultarFactores()
         {
             Factor iFactor = new Factor();
-            //int idHojaResultado = (int)Session["idHojaResultado"];
-
-            int idHojaResultado = 41;
-
+            int idHojaResultado = (int)Session["idHojaResultado"];
+           
             DataTable dtFactores = iFactor.obtenerFactores(idHojaResultado);
             return dtFactores;
         }
