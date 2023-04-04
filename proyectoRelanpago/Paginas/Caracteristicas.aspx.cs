@@ -34,7 +34,7 @@ namespace proyectoRelanpago.Paginas
                 }
                 else
                 {
-                    ///*Insertamos la Hoja de trabajo*/
+                    //*Insertamos la Hoja de trabajo*/
                     string usuario = (string)Session["Usuario"];
                     DateTime fecha = DateTime.Today;
                     bool estado = false;
@@ -42,7 +42,7 @@ namespace proyectoRelanpago.Paginas
 
                     Session["idHojaResultado"] = numerohoja;
 
-                    ///*Insertamos las caracteristicas en un ciclo*/
+                    //*Insertamos las caracteristicas en un ciclo*/
                     String[] arraycaracteristicas = new String[10];
                     arraycaracteristicas[0] = txtCarac1.Text.Trim();
                     arraycaracteristicas[1] = txtCarac2.Text.Trim();

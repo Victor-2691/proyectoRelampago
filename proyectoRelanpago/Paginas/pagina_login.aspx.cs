@@ -13,9 +13,15 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            txt_usuario.Attributes.Add("placeholder", "Usuario");
-            txt_contra.Attributes.Add("placeholder", "Contraseña");
-
+            if (Session["Usuario"] != null)
+            {
+                Response.Redirect("~/Paginas/Principal.aspx", false);
+            }
+            else
+            {
+                txt_usuario.Attributes.Add("placeholder", "Usuario");
+                txt_contra.Attributes.Add("placeholder", "Contraseña");
+            }            
         }
 
         protected void btn_login_Click(object sender, EventArgs e)
@@ -27,7 +33,7 @@ namespace proyectoRelanpago.Paginas
                 if (iniciasesion)
                 {
                     Session["Usuario"] = txt_usuario.Text.Trim();
-                    Response.Redirect("~/Default.aspx", false);
+                    Response.Redirect("~/Paginas/Principal.aspx", false);
                 }
                 else
                 {

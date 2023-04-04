@@ -136,6 +136,8 @@
     <Content Include="Estilos\Pestel.css" />
     <Content Include="Estilos\Principal.css" />
     <Content Include="Estilos\ResumenPestel.css" />
+    <Content Include="Estilos\toastr.css" />
+    <Content Include="Estilos\toastr.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -156,6 +158,7 @@
     <Content Include="Paginas\pagina_login.aspx" />
     <Content Include="Paginas\Pestel.aspx" />
     <Content Include="Paginas\ResumenHistorico.aspx" />
+    <Content Include="Paginas\Principal.aspx" />
     <Content Include="Paginas\ResumenPestel.aspx" />
     <Content Include="Recursos\number10_32.png" />
     <Content Include="Recursos\number1_32.png" />
@@ -176,6 +179,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -278,6 +282,13 @@
     </Compile>
     <Compile Include="Paginas\Pestel.aspx.designer.cs">
       <DependentUpon>Pestel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Paginas\Principal.aspx.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Paginas\Principal.aspx.designer.cs">
+      <DependentUpon>Principal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Paginas\ResumenHistorico.aspx.cs">
       <DependentUpon>ResumenHistorico.aspx</DependentUpon>

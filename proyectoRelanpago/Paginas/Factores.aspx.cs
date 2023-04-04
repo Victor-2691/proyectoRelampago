@@ -14,12 +14,19 @@ namespace proyectoRelanpago.Paginas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (Session["Usuario"] == null)
             {
-                //ingresarFactoresNull();
-                DataTable dtFactores = consultarFactores();
-                grdFactores.DataSource = dtFactores;
-                grdFactores.DataBind();
+                Response.Redirect("~/Paginas/pagina_login.aspx", false);
+            }
+            else
+            {
+                if (!Page.IsPostBack)
+                {
+                    //ingresarFactoresNull();
+                    DataTable dtFactores = consultarFactores();
+                    grdFactores.DataSource = dtFactores;
+                    grdFactores.DataBind();
+                }
             }
         }
 
